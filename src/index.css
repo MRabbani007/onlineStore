@@ -1,0 +1,202 @@
+/* @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'General Sans', sans-serif;
+/* font-family: 'Supreme', sans-serif; */
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  line-height: 1.5;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --clr-slate-50: #f7fee7;
+  --clr-slate-400: #94a3b8;
+  --clr-slate-950: #020617;
+  --clr-yellow-400: #facc15;
+  --clr-yellow-500: #eab308;
+  --clr-red-600: #dc2626;
+  --clr-blue-600: #2563eb;
+  --clr-blue-800: #1e40af;
+  --clr-green-600: #16a34a;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+h3{
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+section {
+  width: 100%;
+  padding-left: 1%;
+  padding-right: 1%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.icon-sm {
+  display: inline;
+  font-size: 15px;
+}
+
+.icon-md {
+  display: inline;
+  font-size: 30px;
+  width: 30px;
+}
+
+.icon-lg {
+  display: inline;
+  font-size: 40px;
+  width: 40px;
+}
+
+.image-md {
+  display: inline;
+  width: 100px;
+}
+
+.image-thumb {
+  width: 80px;
+  height: 60px;
+  padding: .25rem;
+  border: 1px solid var(--clr-slate-400);
+  border-radius: .25rem;
+}
+
+.image-thumb:hover {
+  cursor: pointer;
+  border: 1px solid var(--clr-yellow-400); 
+}
+
+.image-thumb-sq {
+  width: 60px;
+  height: 60px;
+  padding: .25rem;
+  border: 1px solid var(--clr-slate-400);
+  border-radius: .25rem;
+}
+
+.image-thumb-sq:hover {
+  cursor: pointer;
+  border: 1px solid var(--clr-yellow-400); 
+}
+
+.btn {
+  padding: 4px 8px;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  border-radius: 6px;
+  min-width: fit-content;
+  width: 100px;
+}
+
+.btn-yellow {
+  background-color: var(--clr-yellow-400);
+  color: var(--clr-slate-950);
+}
+
+.btn-slate {
+  background-color: var(--clr-slate-400);
+  color: var(--clr-slate-950);
+}
+
+.btn-green {
+  background-color: var(--clr-green-600);
+  color: var(--clr-slate-50);
+}
+
+.btn-blue {
+  background-color: var(--clr-blue-600);
+  color: var(--clr-slate-50);
+}
+
+.btn-add {
+  display: inline;
+  margin-left: .25rem;
+  margin-right: .25rem;
+  color: var(--clr-blue-600);
+  cursor: pointer;
+}
+.btn-remove {
+  display: inline;
+  margin-left: .25rem;
+  margin-right: .25rem;
+  color: var(--clr-red-600);
+  cursor: pointer;
+}
+
+.edit-item {
+  cursor: pointer;
+  color: var(--clr-blue-800)
+}
+
+.edit-item:hover::after {
+  content: url(/images/pen-solid.svg);
+}
+
+.edit-item:hover .btn-remove{
+  visibility: visible;
+}
+
+.edit-cont:hover .btn-remove{
+  visibility: visible;
+}
+
+.page-container {
+  padding-top: 60px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: screen;
+}
+
+.input-block {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.input-block-row {
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.input-block input, .input-block-row input{
+  outline: none;
+  border: 1px solid var(--clr-slate-400);
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+.input-block label, .input-block-row label{
+margin-right: .5rem;
+}
+
+
