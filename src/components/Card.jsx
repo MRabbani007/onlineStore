@@ -7,7 +7,6 @@ import {
 } from "../data/productFunctions";
 import { IMAGE_URL } from "../data/utils";
 // Imported Icons
-import { FaStar, FaStarHalfStroke, FaRegStar } from "react-icons/fa6";
 import { IoStar, IoStarHalf, IoStarOutline } from "react-icons/io5";
 
 const Card = ({ product, handleClick }) => {

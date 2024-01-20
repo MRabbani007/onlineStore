@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-// Imported Data
-import { products } from "../data/productData";
-import { searchProducts } from "../data/productFunctions";
-import { fetchSearch } from "../data/productServerFunctions";
+import { useLocation, useNavigate } from "react-router-dom";
 // Imported Components
 import Card from "../components/Card";
 import Navbar from "../components/Navbar";
 import Paginnation from "../components/Paginnation";
+// Imported Data
+import { fetchSearch } from "../data/productServerFunctions";
 import { ITEMS_PER_PAGE } from "../data/utils";
 
 const Store = () => {

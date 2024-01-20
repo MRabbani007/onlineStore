@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+// Imported Components
 import Navbar from "../components/Navbar";
-import { fetchCart, fetchOrder } from "../data/productServerFunctions";
 import CartProductCard from "../components/CartProductCard";
+// Imported Data
+import { fetchCart, fetchOrder } from "../data/productServerFunctions";
 
 const Cart = () => {
   // User information

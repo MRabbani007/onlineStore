@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+// Imported Components
+import Navbar from "../components/Navbar";
 
 const Signin = () => {
   const [username, setUsername] = useState("admin");
   const [password, setPassword] = useState("asd123");
-  const [siginResponse, SetSiginResponse] = useState("");
   const navigate = useNavigate();
 
   // TODO: implement signout

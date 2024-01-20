@@ -1,11 +1,8 @@
 import React from "react";
+// Imported Components
 import Navbar from "../components/Navbar";
-import {
-  FLAG_URL,
-  countries,
-  currencies,
-  languages,
-} from "../data/settingsData";
+// Imported Data
+import { countries, currencies, languages } from "../data/settingsData";
 
 const SettingsPage = () => {
   return (

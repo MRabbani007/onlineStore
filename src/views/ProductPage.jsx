@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { fetchProduct, fetchCart } from "../data/productServerFunctions";
-import { IoStar, IoStarHalf, IoStarOutline } from "react-icons/io5";
-import Navbar from "../components/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
+// Imported Components
+import Navbar from "../components/Navbar";
+// Imported Data
+import { fetchProduct, fetchCart } from "../data/productServerFunctions";
 import {
   genRatings,
   getProductImages,
@@ -11,9 +12,9 @@ import {
   parseImageColor,
 } from "../data/productFunctions";
 import { IMAGE_URL } from "../data/utils";
+// Imported Icons
+import { IoStar, IoStarHalf, IoStarOutline } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
-
-const imageURL = "../../images/products/";
 
 const ProductPage = () => {
   // User information
@@ -211,7 +212,7 @@ const ProductPage = () => {
               </div>
               <div className="w-[300px]">
                 {productImages.length !== 0 && (
-                  <img src={imageURL + mainImage} alt="" />
+                  <img src={IMAGE_URL + mainImage} alt="" />
                 )}
               </div>
             </div>
@@ -310,7 +311,7 @@ const ProductPage = () => {
                                 if (isSelected(value, property)) {
                                   return (
                                     <img
-                                      src={imageURL + value}
+                                      src={IMAGE_URL + value}
                                       className="inline-block border-[2px] border-yellow-500 p-1 mx-2 my-1 w-[50px]"
                                       key={idx}
                                       title={""}
@@ -319,7 +320,7 @@ const ProductPage = () => {
                                 } else {
                                   return (
                                     <img
-                                      src={imageURL + value}
+                                      src={IMAGE_URL + value}
                                       className="inline-block border-[1px] p-1 mx-2 my-1 w-[50px]"
                                       key={idx}
                                       title={""}

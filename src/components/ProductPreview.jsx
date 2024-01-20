@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// Imported Icons
 import { FaTimes } from "react-icons/fa";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 

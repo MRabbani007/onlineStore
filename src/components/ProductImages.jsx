@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+// Imported Data
+import { IMAGE_URL } from "../data/utils";
 // Imported Icons
 import { FaMinusCircle, FaPlusCircle, FaTimes } from "react-icons/fa";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { MdEdit, MdFileUpload } from "react-icons/md";
-import { IMAGE_URL } from "../data/utils";
 
 const ProductImages = ({
   images,

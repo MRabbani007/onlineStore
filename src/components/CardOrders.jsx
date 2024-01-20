@@ -1,7 +1,8 @@
 import React from "react";
-import buyAgainImg from "../../images/icons/buy-again.png";
-import keyboardImg from "../../images/products/redragon_gaming_keyboard_1.jpg";
+// Imported Data
 import { IMAGE_URL } from "../data/utils";
+// Imported Media
+import buyAgainImg from "../assets/icons/buy-again.png";
 
 const CardOrders = ({ order }) => {
   const getImage = (product) => {

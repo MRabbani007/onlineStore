@@ -1,9 +1,12 @@
 import React, { forwardRef } from "react";
-import { departments } from "../data/departments";
-import { IoClose } from "react-icons/io5";
-import flag from "../../images/flags/flag-kz.png";
-import logo from "../../images/icons/logo.png";
 import { Link } from "react-router-dom";
+// Imported Data
+import { departments } from "../data/departments";
+// Imported Icons
+import { IoClose } from "react-icons/io5";
+// Imported Media
+import flag from "../assets/flags/flag-kz.png";
+import logo from "../assets/icons/logo.png";
 
 const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
   return (

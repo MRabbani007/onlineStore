@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+// Imported Components
+import Navbar from "../components/Navbar";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  // TODO: handle navigation
   const navigate = useNavigate();
 
   const handleSignUp = async (event) => {

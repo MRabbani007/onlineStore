@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+// Imported Components
 import Navbar from "../components/Navbar";
 import CardOrders from "../components/CardOrders";
+// Imported Data
 import { fetchOrder } from "../data/productServerFunctions";
 
 const OrdersPage = () => {

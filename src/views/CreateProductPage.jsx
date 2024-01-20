@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 // Imported Components
 import Navbar from "../components/Navbar";
 import ProductDetails from "../components/ProductDetails";
 import ProductProperties from "../components/ProductProperties";
+import ProductImages from "../components/ProductImages";
+import { categoryOptions } from "../data/departments";
+import DropDownOptions from "../components/DropDownOptions";
 // Imported Data
 import { IMAGE_URL } from "../data/utils";
 import { genRatings, getProductPrice } from "../data/productFunctions";
-// Imported Icons
-import { MdEdit } from "react-icons/md";
-import { IoStar, IoStarHalf, IoStarOutline } from "react-icons/io5";
-import { FaMinusCircle, FaPlus, FaPlusCircle, FaTimes } from "react-icons/fa";
-import { MdFileUpload } from "react-icons/md";
-import ProductImages from "../components/ProductImages";
 import {
   fetchCreateProduct,
   fetchProduct,
   fetchUpdateProduct,
 } from "../data/productServerFunctions";
-import DropDownOptions from "../components/DropDownOptions";
-import { categoryOptions } from "../data/departments";
-import { useLocation } from "react-router-dom";
+// Imported Icons
+import { IoStar, IoStarHalf, IoStarOutline } from "react-icons/io5";
 
 // Template for creating new product
 const newProduct = {
@@ -62,10 +59,6 @@ const CreateProductPage = () => {
   const [editItem, setEditItem] = useState("");
   const [editInput, setEditInput] = useState("");
   const [editData, setEditData] = useState("");
-
-  const [category, setCategory] = useState(
-    product.category || categoryOptions[0]
-  );
 
   const handleCategoryChange = (value) => {
     setProduct((currentProduct) => {

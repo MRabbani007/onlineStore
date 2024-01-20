@@ -12,7 +12,7 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoMenu, IoCartOutline } from "react-icons/io5";
 // Imported Media
-import logo from "../../images/icons/logo.png";
+import logo from "../assets/icons/logo.png";
 
 const Navbar = ({ pageCart }) => {
   // User information

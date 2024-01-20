@@ -1,17 +1,15 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { forwardRef } from "react";
+// Imported Icons
 import { IoSettings } from "react-icons/io5";
 import { FaDollarSign } from "react-icons/fa";
-import kzFlag from "../../images/flags/flag-kz.png";
-import usFlag from "../../images/flags/flag-usa.png";
-import { forwardRef } from "react";
+// Imported Media
+import kzFlag from "../assets/flags/flag-kz.png";
+import usFlag from "../assets/flags/flag-usa.png";
 
 const DropDownSignin = forwardRef(
   ({ userMenu, userName, handleSignOut }, ref) => {
-    useEffect(() => {
-      // console.log(userMenu);
-    }, [userMenu]);
-
     return (
       <div
         ref={ref}

@@ -1,6 +1,6 @@
-import React, { forwardRef, useEffect, useState } from "react";
-// import { getProductSummary } from "../data/productFunctions";
+import React, { forwardRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+// Imported Data
 import { IMAGE_URL } from "../data/utils";
 
 const DropDownCart = forwardRef(({ cart, cartMenu }, ref) => {

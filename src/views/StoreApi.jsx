@@ -1,9 +1,9 @@
-import React, { useEffect, useReducer, useRef, useState } from "react";
-import Navbar from "../components/Navbar";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+// Imported Components
+import Navbar from "../components/Navbar";
 import ProductInfo from "../components/ProductInfo";
-// import ProductDetails from "../components/productDetails";
 import ProductProperties from "../components/ProductProperties";
 import ProductPreview from "../components/ProductPreview";
 

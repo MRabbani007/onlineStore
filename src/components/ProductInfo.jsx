@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { FaPlus, FaMinus } from "react-icons/fa6";
+// Imported Components
 import DropDownOptions from "./DropDownOptions";
+// Imported Data
 import { categoryOptions, starsOptions } from "../data/departments";
+// Imported Icons
+import { FaPlus, FaMinus } from "react-icons/fa6";
 
 const ProductInfo = ({ productInfo, handleProductInfo }) => {
   const [view, setView] = useState(true);

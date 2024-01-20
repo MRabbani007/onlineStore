@@ -1,5 +1,7 @@
 import React from "react";
+// Imported Components
 import MyCarousel from "./MyCarousel";
+// Imported Data
 import { brandsData, LOGO_URL } from "../data/brandData";
 
 const Brands = ({ category }) => {
