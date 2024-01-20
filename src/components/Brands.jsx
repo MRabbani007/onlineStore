@@ -2,7 +2,8 @@ import React from "react";
 // Imported Components
 import MyCarousel from "./MyCarousel";
 // Imported Data
-import { brandsData, IMAGE_URL_LOGO } from "../data/brandData";
+import { brandsData } from "../data/brandData";
+import { IMAGE_URL_LOGO } from "../data/utils";
 
 const Brands = ({ category }) => {
   let brandsArray = brandsData.filter((item) => item.category === category);
