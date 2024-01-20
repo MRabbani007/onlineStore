@@ -20,15 +20,18 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/store" element={<Store />}></Route>
-        <Route path="/product" element={<ProductPage />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/orders" element={<OrdersPage />}></Route>
-        <Route path="/signin" element={<Signin />}></Route>
-        <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/storeapi" element={<CreateProductPage />}></Route>
-        <Route path="/settings" element={<SettingsPage />}></Route>
+        <Route path="/onlineStore/" element={<HomePage />}></Route>
+        <Route path="/onlineStore/store" element={<Store />}></Route>
+        <Route path="/onlineStore/product" element={<ProductPage />}></Route>
+        <Route path="/onlineStore/cart" element={<Cart />}></Route>
+        <Route path="/onlineStore/orders" element={<OrdersPage />}></Route>
+        <Route path="/onlineStore/signin" element={<Signin />}></Route>
+        <Route path="/onlineStore/signup" element={<Signup />}></Route>
+        <Route
+          path="/onlineStore/storeapi"
+          element={<CreateProductPage />}
+        ></Route>
+        <Route path="/onlineStore/settings" element={<SettingsPage />}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
