@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Imported Styles
-import "./index.css";
+import "./styles/index.css";
 // Imported Components
 import Store from "./views/Store";
 import Cart from "./views/Cart";
