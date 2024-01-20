@@ -18,7 +18,7 @@ const DropDownCart = forwardRef(({ cart, cartMenu }, ref) => {
   };
 
   const handleClick = (productID) => {
-    navigate("/product", { state: { productID: productID } });
+    navigate("/onlineStore/product", { state: { productID: productID } });
   };
 
   return (
@@ -35,7 +35,7 @@ const DropDownCart = forwardRef(({ cart, cartMenu }, ref) => {
       tabIndex="-1"
     >
       <Link
-        to="/cart"
+        to="/onlineStore/cart"
         key={"ViewCart-link"}
         role="menuitem"
         tabIndex="-1"

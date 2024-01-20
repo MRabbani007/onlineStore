@@ -25,7 +25,7 @@ const DropDownSignin = forwardRef(
       >
         {userName === "" ? (
           <Link
-            to="/signin"
+            to="/onlineStore/signin"
             role="menuitem"
             tabIndex="-1"
             id="menu-item-0"
@@ -45,7 +45,7 @@ const DropDownSignin = forwardRef(
           </div>
         )}
         <Link
-          to="/signup"
+          to="/onlineStore/signup"
           role="menuitem"
           tabIndex="-1"
           id="menu-item-1"
@@ -54,7 +54,7 @@ const DropDownSignin = forwardRef(
           Signup
         </Link>
         <Link
-          to="/orders"
+          to="/onlineStore/orders"
           role="menuitem"
           tabIndex="-1"
           id="menu-item-2"
@@ -63,7 +63,7 @@ const DropDownSignin = forwardRef(
           Orders & Returns
         </Link>
         <Link
-          to="/storeapi"
+          to="/onlineStore/storeapi"
           role="menuitem"
           tabIndex="-1"
           id="menu-item-200"
@@ -72,7 +72,7 @@ const DropDownSignin = forwardRef(
           Create Product
         </Link>
         <Link
-          to="/settings"
+          to="/onlineStore/settings"
           role="menuitem"
           tabIndex="-1"
           id="menu-item-3"
@@ -82,7 +82,7 @@ const DropDownSignin = forwardRef(
           Kazakhstan
         </Link>
         <Link
-          to="/settings"
+          to="/onlineStore/settings"
           role="menuitem"
           tabIndex="-1"
           id="menu-item-4"
@@ -92,7 +92,7 @@ const DropDownSignin = forwardRef(
           EN-US
         </Link>
         <Link
-          to="/settings"
+          to="/onlineStore/settings"
           role="menuitem"
           tabIndex="-1"
           id="menu-item-4"
@@ -102,7 +102,7 @@ const DropDownSignin = forwardRef(
           US-Dollar
         </Link>
         <Link
-          to="/settings"
+          to="/onlineStore/settings"
           role="menuitem"
           tabIndex="-1"
           id="menu-item-4"

@@ -39,7 +39,7 @@ const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
               >
                 <Link
                   to={{
-                    pathname: "/store",
+                    pathname: "/onlineStore/store",
                     state: { searchCat: dep.value, searchQuery: "" },
                     search: dep.value,
                   }}
@@ -58,13 +58,13 @@ const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
         <h1 className="font-bold text-xl my-2">Customer Service</h1>
         <div className="flex">
           <Link
-            to="/signup"
+            to="/onlineStore/signup"
             className="bg-slate-500 text-slate-50 rounded-md mx-2 py-2 px-4"
           >
             Signup
           </Link>
           <Link
-            to="/signin"
+            to="/onlineStore/signin"
             className="bg-yellow-500 text-slate-950 rounded-md mx-2 py-2 px-4"
           >
             Signin

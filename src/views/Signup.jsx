@@ -91,7 +91,7 @@ const Signup = () => {
         <div className="flex justify-between items-center my-2 w-[300px]">
           <span>Already have an account?</span>
           <Link
-            to="/signin"
+            to="/onlineStore/signin"
             className="bg-blue-600 text-slate-50 rounded-md px-4 py-1"
           >
             Sign In

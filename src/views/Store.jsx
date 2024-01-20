@@ -20,7 +20,7 @@ const Store = () => {
   const navigate = useNavigate();
 
   const handleClick = (productID) => {
-    navigate("/product", { state: { productID: productID } });
+    navigate("/onlineStore/product", { state: { productID: productID } });
   };
 
   const handlePage = (page) => {

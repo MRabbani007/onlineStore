@@ -73,7 +73,7 @@ const Navbar = ({ pageCart }) => {
   // Handle search
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate("/store", {
+    navigate("/onlineStore/store", {
       state: { searchCat: searchCat, searchQuery: searchQuery },
     });
   };
@@ -143,7 +143,7 @@ const Navbar = ({ pageCart }) => {
         <img
           src={logo}
           alt="Sleek Logo"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/onlineStore/")}
           className="w-[80px] h-[30px] ml-2 cursor-pointer"
         />
       </div>

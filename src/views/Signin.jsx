@@ -31,7 +31,7 @@ const Signin = () => {
             "sleekUser",
             JSON.stringify({ username: username })
           );
-          navigate("/", { state: { username: username } });
+          navigate("/onlineStore/", { state: { username: username } });
         }
       } catch (error) {
         console.log(error);
@@ -87,7 +87,7 @@ const Signin = () => {
         <div className="flex justify-between items-center my-2 w-[300px]">
           <span>Don't have an account?</span>
           <Link
-            to="/signup"
+            to="/onlineStore/signup"
             className="bg-blue-600 text-slate-50 rounded-md px-4 py-1"
           >
             Sign Up
