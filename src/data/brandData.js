@@ -1,5 +1,3 @@
-export const LOGO_URL = "../../images/icons/logo-";
-
 export const brandsData = [
   {
     name: "Adidas",

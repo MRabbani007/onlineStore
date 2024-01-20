@@ -2,7 +2,7 @@ import React from "react";
 // Imported Components
 import MyCarousel from "./MyCarousel";
 // Imported Data
-import { brandsData, LOGO_URL } from "../data/brandData";
+import { brandsData, IMAGE_URL_LOGO } from "../data/brandData";
 
 const Brands = ({ category }) => {
   let brandsArray = brandsData.filter((item) => item.category === category);
@@ -12,7 +12,7 @@ const Brands = ({ category }) => {
         {brandsArray.map((brand, index) => {
           return (
             <img
-              src={LOGO_URL + brand.image}
+              src={IMAGE_URL_LOGO + brand.image}
               alt={brand.name}
               key={index}
               className="min-w-[150px] max-w-[150px] h-fit shrink-0"
