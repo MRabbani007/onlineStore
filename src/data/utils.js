@@ -1,4 +1,4 @@
-export const IMAGE_URL = "/src/assets/products/";
+export const IMAGE_URL = "images/products/";
 export const IMAGE_URL_DEALS = "images/deals/";
 export const IMAGE_URL_BG = "images/background/";
 export const IMAGE_URL_LOGO = "images/brand_logos/logo-";

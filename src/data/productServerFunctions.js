@@ -1,11 +1,14 @@
 import axios from "axios";
 
+const SERVER_URL = "https://online-store-server-iu6b.onrender.com";
+const SERVER_URL_DEV = "http://localhost:3000";
+
 // Fetch product from server
 export const fetchProduct = async (productID) => {
   try {
     let response = await axios({
       method: "post",
-      url: "http://localhost:3000/products/id",
+      url: `${SERVER_URL}/products/id`,
       data: { productID: productID },
     });
     if (response.data) {
@@ -21,7 +24,7 @@ export const fetchCreateProduct = async (product) => {
   try {
     let response = await axios({
       method: "post",
-      url: "http://localhost:3000/products/create",
+      url: `${SERVER_URL}/products/create`,
       data: {
         product: product,
       },
@@ -36,7 +39,7 @@ export const fetchUpdateProduct = async (product) => {
   try {
     let response = await axios({
       method: "post",
-      url: "http://localhost:3000/products/update",
+      url: `${SERVER_URL}/products/update`,
       data: {
         product: product,
       },
@@ -52,7 +55,7 @@ export const fetchCart = async (cartOption, userName, cartData) => {
   try {
     let response = await axios({
       method: "post",
-      url: "http://localhost:3000/user/cart",
+      url: `${SERVER_URL}/user/cart`,
       data: { cartOption: cartOption, userName: userName, cartData: cartData },
     });
     if (response.data) {
@@ -68,7 +71,7 @@ export const fetchOrder = async (orderOption, userName, orderData) => {
   try {
     let response = await axios({
       method: "post",
-      url: "http://localhost:3000/user/order",
+      url: `${SERVER_URL}/user/order`,
       data: {
         orderOption: orderOption,
         userName: userName,
@@ -92,7 +95,7 @@ export const fetchSearch = async (
   try {
     let response = await axios({
       method: "post",
-      url: "http://localhost:3000/products/search",
+      url: `${SERVER_URL}/products/search`,
       data: {
         searchCat: searchCat,
         searchQuery: searchQuery,
