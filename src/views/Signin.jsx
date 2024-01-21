@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // Imported Components
 import Navbar from "../components/Navbar";
+// Imported Data
+import { SERVER_URL } from "../data/utils";
 
 const Signin = () => {
   const [username, setUsername] = useState("admin");
@@ -20,7 +22,7 @@ const Signin = () => {
       try {
         let response = await axios({
           method: "post",
-          url: "http://localhost:3000/signin",
+          url: `${SERVER_URL}/signin`,
           data: {
             username: username,
             password: password,

@@ -4,6 +4,9 @@ export const IMAGE_URL_BG = "images/background/";
 export const IMAGE_URL_LOGO = "images/brand_logos/logo-";
 export const ITEMS_PER_PAGE = 10;
 
+export const SERVER_URL = "https://online-store-server-iu6b.onrender.com";
+export const SERVER_URL_DEV = "http://localhost:3000";
+
 const weekday = [
   "Sunday",
   "Monday",

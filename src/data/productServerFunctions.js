@@ -1,7 +1,5 @@
 import axios from "axios";
-
-const SERVER_URL = "https://online-store-server-iu6b.onrender.com";
-const SERVER_URL_DEV = "http://localhost:3000";
+import { SERVER_URL } from "./utils";
 
 // Fetch product from server
 export const fetchProduct = async (productID) => {

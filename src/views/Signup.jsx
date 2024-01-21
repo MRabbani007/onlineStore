@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // Imported Components
 import Navbar from "../components/Navbar";
+// Imported Data
+import { SERVER_URL } from "../data/utils";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -17,7 +19,7 @@ const Signup = () => {
       try {
         let response = await axios({
           method: "post",
-          url: "http://localhost:3000/signup",
+          url: `${SERVER_URL}/signup`,
           data: {
             username: username,
             password: password,
