@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 // Imported Components
 import Navbar from "../components/Navbar";
 // Imported Data
-import { SERVER_URL } from "../data/utils";
+import { fetchSignin } from "../data/userServerFunctions";
 
 const Signin = () => {
   const [username, setUsername] = useState("admin");
@@ -18,25 +17,22 @@ const Signin = () => {
 
   const handleSignin = async (event) => {
     event.preventDefault();
-    if (username !== "" && password !== "") {
-      try {
-        let response = await axios({
-          method: "post",
-          url: `${SERVER_URL}/signin`,
-          data: {
-            username: username,
-            password: password,
-          },
-        });
-        if (response.data === "accepted") {
+    if (username === "") {
+      alert("Enter Username");
+    } else {
+      if (password === "") {
+        alert("Enter Password");
+      } else {
+        let result = await fetchSignin(username, password);
+        if (result === null) {
+          alert("Server Error!");
+        } else if (result === "accepted") {
           localStorage.setItem(
             "sleekUser",
             JSON.stringify({ username: username })
           );
           navigate("/onlineStore/", { state: { username: username } });
         }
-      } catch (error) {
-        console.log(error);
       }
     }
   };

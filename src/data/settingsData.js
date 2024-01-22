@@ -1,5 +1,3 @@
-export const FLAG_URL = "../../images/flags/";
-
 export const countries = [
   { name: "Kazakhstan", flag: "flag-kz.png" },
   { name: "Lebanon", flag: "flag-lb.png" },

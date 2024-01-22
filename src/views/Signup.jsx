@@ -1,37 +1,31 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 // Imported Components
 import Navbar from "../components/Navbar";
 // Imported Data
-import { SERVER_URL } from "../data/utils";
+import { fetchSignup } from "../data/userServerFunctions";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  // TODO: handle navigation
+  // Page Navigation
   const navigate = useNavigate();
 
   const handleSignUp = async (event) => {
     event.preventDefault();
-    if (username !== "" && password !== "") {
-      try {
-        let response = await axios({
-          method: "post",
-          url: `${SERVER_URL}/signup`,
-          data: {
-            username: username,
-            password: password,
-            email: email,
-          },
-        });
-        console.log(response.data);
-        if (response.data === "accepted") {
-          // navigate("/", { state: { username: username } });
+    if (username === "") {
+      alert("Enter Username");
+    } else {
+      if (password === "") {
+        alert("Enter Password");
+      } else {
+        let result = await fetchSignup(username, password, email);
+        if (result === null) {
+          alert("Server Error");
+        } else if (result === "accepted") {
+          navigate("/onlineStore/signin", { state: { username: username } });
         }
-      } catch (error) {
-        console.log(error);
       }
     }
   };

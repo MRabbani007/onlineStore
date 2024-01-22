@@ -6,8 +6,7 @@ import Navbar from "../components/Navbar";
 import { fetchProduct, fetchCart } from "../data/productServerFunctions";
 import {
   genRatings,
-  getProductImages,
-  getProductPrice,
+  genPrice,
   getSelectProperties,
   parseImageColor,
 } from "../data/productFunctions";
@@ -86,14 +85,11 @@ const ProductPage = () => {
   // Fetch cart from server
   const handleCart = async (cartOption, cartData) => {
     try {
-      let temp = [];
-      temp = await fetchCart(cartOption, userName, cartData).then(
-        (responseData) => {
-          setCart(() => {
-            return responseData;
-          });
-        }
-      );
+      await fetchCart(cartOption, userName, cartData).then((responseData) => {
+        setCart(() => {
+          return responseData;
+        });
+      });
     } catch (error) {
       console.log("Error: Fetch Cart");
     }
@@ -120,7 +116,6 @@ const ProductPage = () => {
 
   // Add selected image & color
   const handleImage = (image, imageName) => {
-    // let color = parseImageColor(product, propertyValue);
     addproperty("image", image);
     addproperty("color", imageName);
   };
@@ -159,23 +154,14 @@ const ProductPage = () => {
 
   // Load Product properties & values
   useEffect(() => {
-    console.log(product);
     if (product && typeof product !== "undefined" && product.length !== 0) {
       setProductProperties(product.properties);
       setProductValues(product.values);
-      if (!product.images.length) {
-        // seperate images
-        setProductImages(getProductImages(product));
-        setMainImage(getProductImages(product)[0]);
-      } else {
-        // images as property
-        setProductImages(getProductImages(product)[0]);
-        setMainImage(getProductImages(product)[0][0]);
-      }
-      // setProductImages(getProductImages(product));
+      setProductImages(product.images[0]);
+      setMainImage(product.images[0][0]);
       setStars(genRatings(product));
       setRatings(product.rating.count);
-      setPrice(getProductPrice(product));
+      setPrice(genPrice(product.priceCents));
       // initiate selected product to be added to cart
       let requiredProps = getSelectProperties(product);
       setSelectedProduct({

@@ -13,7 +13,7 @@ export const fetchProduct = async (productID) => {
       return response.data;
     }
   } catch (error) {
-    console.error(error);
+    console.log("Error: Fetch Product");
     return {};
   }
 };
@@ -29,7 +29,8 @@ export const fetchCreateProduct = async (product) => {
     });
     alert(response.data);
   } catch (error) {
-    console.log(error);
+    console.log("Error: Create Product");
+    return null;
   }
 };
 
@@ -44,7 +45,8 @@ export const fetchUpdateProduct = async (product) => {
     });
     alert(response.data);
   } catch (error) {
-    console.log(error);
+    console.log("Error: Update Product");
+    return null;
   }
 };
 
@@ -60,7 +62,7 @@ export const fetchCart = async (cartOption, userName, cartData) => {
       return response.data.result || [];
     }
   } catch (error) {
-    console.error(error);
+    console.log("Error: Fetch Cart");
     return [];
   }
 };

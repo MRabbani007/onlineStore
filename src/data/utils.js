@@ -1,9 +1,14 @@
+// Images stored under public folder
 export const IMAGE_URL = "images/products/";
 export const IMAGE_URL_DEALS = "images/deals/";
 export const IMAGE_URL_BG = "images/background/";
 export const IMAGE_URL_LOGO = "images/brand_logos/logo-";
-export const ITEMS_PER_PAGE = 10;
 
+export const FLAG_URL = "src/assets/flags/";
+
+// Items per page
+export const ITEMS_PER_PAGE = 10;
+// Server URL
 export const SERVER_URL = "https://online-store-server-iu6b.onrender.com";
 export const SERVER_URL_DEV = "http://localhost:3000";
 

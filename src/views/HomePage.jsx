@@ -11,8 +11,11 @@ const HomePage = () => {
     <>
       <Navbar />
       <div
-        className={`w-full min-h-screen pt-[25%] pb-[80px] text-slate-950 px-5 flex flex-wrap justify-center gap-5 bg-[url("/images/background/background-1.jpg")] bg-no-repeat bg-contain`}
+        className={`w-full min-h-screen pt-[25%] pb-[80px] text-slate-950 px-5 flex flex-wrap justify-center gap-5 relative`}
       >
+        <div
+          className={`h-[20vh] absolute top-[60px] left-0 right-0 bg-[url("/images/background/background-1.jpg")] bg-no-repeat bg-cover bg-origin-content z-0`}
+        ></div>
         {/* <Brands category={"Beauty & Personal Care"} /> */}
         {cardData1.map((item, index) => {
           return <CardHomePage cardInfo={item} key={index} />;

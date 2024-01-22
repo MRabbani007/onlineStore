@@ -9,7 +9,7 @@ import { categoryOptions } from "../data/departments";
 import DropDownOptions from "../components/DropDownOptions";
 // Imported Data
 import { IMAGE_URL } from "../data/utils";
-import { genRatings, getProductPrice } from "../data/productFunctions";
+import { genRatings, genPrice } from "../data/productFunctions";
 import {
   fetchCreateProduct,
   fetchProduct,
@@ -88,7 +88,7 @@ const CreateProductPage = () => {
         return currentProduct;
       });
       setStars(genRatings(product));
-      setPrice(getProductPrice(product));
+      setPrice(genPrice(product.priceCents));
       if (!!product.images) {
         setProductImages(product.images[0]);
         setMainImage(product.images[0][0]);

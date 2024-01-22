@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 // Imported Data
-import {
-  genRatings,
-  getProductImages,
-  getProductPrice,
-} from "../data/productFunctions";
+import { genRatings, genPrice } from "../data/productFunctions";
 import { IMAGE_URL } from "../data/utils";
 // Imported Icons
 import { IoStar, IoStarHalf, IoStarOutline } from "react-icons/io5";
@@ -19,18 +15,17 @@ const Card = ({ product, handleClick }) => {
 
   useEffect(() => {
     setStars(genRatings(product));
-    setPrice(getProductPrice(product));
-    if (!product.images.length) {
-      setProductImage(getProductImages(product)[0]);
+    setPrice(genPrice(product.priceCents));
+    if (product.images.length) {
+      setProductImage(product.images[0][0]);
     } else {
-      setProductImage(getProductImages(product)[0][0]);
     }
   }, []);
 
   return (
     <div
       onClick={() => handleClick(product.id)}
-      className="w-[250px] h-[300px] text-slate-950 border-[1px] border-slate-300 overflow-hidden text-ellipsis"
+      className="md:w-[250px] w-[300px] h-[300px] text-slate-950 border-[1px] border-slate-300 overflow-hidden text-ellipsis"
     >
       <div className="w-full h-[70%]">
         <div className="flex justify-center">

@@ -13,7 +13,6 @@ const OrdersPage = () => {
   const handleOrder = async (orderOption) => {
     if (userName === "") {
     } else {
-      console.log("here");
       await fetchOrder(orderOption, userName).then((response) =>
         setOrders(response)
       );
@@ -36,7 +35,7 @@ const OrdersPage = () => {
   return (
     <>
       <Navbar />
-      <div className="w-full min-h-screen py-[80px] text-slate-950 px-5 flex flex-col gap-5">
+      <div className="w-full min-h-screen py-[80px] text-slate-950 lg:px-5 px-2 flex flex-col md:gap-5">
         <h1 className="text-3xl font-bold text-center">
           My Orders - {orders.length} {orders.length === 1 ? "order" : "orders"}
         </h1>

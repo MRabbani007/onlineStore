@@ -75,14 +75,14 @@ const Cart = () => {
   return (
     <>
       <Navbar pageCart={cart} />
-      <div className="w-full min-h-screen pt-[80px] text-slate-950 px-5 gap-5">
+      <div className="w-full min-h-screen pt-[80px] text-slate-950 lg:px-5 px-2 md:gap-5">
         <h1 className="text-3xl font-bold text-center my-4">
           Checkout - {cart.length !== 0 && cart.length}{" "}
           {cart.length === 1 ? "item" : "items"}
         </h1>
         <h2 className="text-2xl font-bold my-2 mx-2">Review Your Order</h2>
         <div className="flex flex-wrap">
-          <div className="w-[70%] mx-2">
+          <div className="lg:w-[70%] w-full mx-2">
             {cart.length !== 0 &&
               cart.map((cartItem, index) => {
                 return (
@@ -96,7 +96,7 @@ const Cart = () => {
                 );
               })}
           </div>
-          <div className="w-[25%] mx-2">
+          <div className="lg:w-[25%] w-full mx-2">
             <div className="bg-slate-200 px-2 py-2 font-semibold">
               Order Summary
             </div>
