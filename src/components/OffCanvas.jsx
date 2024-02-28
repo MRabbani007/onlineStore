@@ -13,9 +13,8 @@ const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
     <div
       ref={ref}
       className={
-        sidebar
-          ? "fixed top-0 left-0 h-screen w-[300px] bg-slate-300 text-slate-950 flex flex-col z-10 pt-[0px] duration-500"
-          : "fixed top-0 left-[-100%] h-screen w-[300px] bg-slate-300 text-slate-950 flex flex-col z-10 pt-[0px] duration-500"
+        (sidebar ? " left-0 " : " left-[-100%] ") +
+        " fixed top-0 h-screen w-[300px] bg-slate-300 text-slate-950 flex flex-col z-40 pt-[0px] duration-500"
       }
     >
       <div className="flex justify-between py-4 px-2 bg-slate-950 text-slate-50">
@@ -39,7 +38,7 @@ const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
               >
                 <Link
                   to={{
-                    pathname: "/onlineStore/store",
+                    pathname: "store",
                     state: { searchCat: dep.value, searchQuery: "" },
                     search: dep.value,
                   }}
@@ -58,13 +57,13 @@ const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
         <h1 className="font-bold text-xl my-2">Customer Service</h1>
         <div className="flex">
           <Link
-            to="/onlineStore/signup"
+            to="signup"
             className="bg-slate-500 text-slate-50 rounded-md mx-2 py-2 px-4"
           >
             Signup
           </Link>
           <Link
-            to="/onlineStore/signin"
+            to="signin"
             className="bg-yellow-500 text-slate-950 rounded-md mx-2 py-2 px-4"
           >
             Signin

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // Imported Components
-import Navbar from "../components/Navbar";
 import ProductInfo from "../components/ProductInfo";
 import ProductProperties from "../components/ProductProperties";
 import ProductPreview from "../components/ProductPreview";
@@ -268,7 +267,6 @@ const StoreApi = () => {
 
   return (
     <>
-      <Navbar />
       <div className="page-container">
         <h1 className="text-center">Create New Product</h1>
         <div className="flex flex-wrap justify-center gap-5 min-h-screen">

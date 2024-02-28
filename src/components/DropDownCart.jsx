@@ -1,9 +1,12 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // Imported Data
 import { IMAGE_URL } from "../data/utils";
+import { GlobalContext } from "../context/GlobalState";
 
-const DropDownCart = forwardRef(({ cart, cartMenu }, ref) => {
+const DropDownCart = forwardRef(({ cartMenu }, ref) => {
+  const { cart, handleOpenProduct } = useContext(GlobalContext);
+
   // Page navigation
   const navigate = useNavigate();
 
@@ -18,31 +21,33 @@ const DropDownCart = forwardRef(({ cart, cartMenu }, ref) => {
   };
 
   const handleClick = (productID) => {
-    navigate("/onlineStore/product", { state: { productID: productID } });
+    handleOpenProduct(productID);
+    // navigate("/product", { state: { productID: productID } });
   };
 
   return (
     <div
       ref={ref}
-      className={`${
-        cartMenu
-          ? "absolute visible translate-y-0 opacity-100"
-          : "absolute invisible translate-y-[-20px] opacity-0"
-      }  right-0 z-10 mt-2 w-fit rounded-md origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none duration-500`}
+      className={
+        (cartMenu
+          ? " visible translate-y-0 opacity-100"
+          : " invisible translate-y-[-20px] opacity-0") +
+        " absolute right-0 z-10 mt-2 w-fit rounded-md origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none duration-500"
+      }
       role="menu"
       aria-orientation="vertical"
       aria-labelledby="menu-button"
       tabIndex="-1"
     >
       <Link
-        to="/onlineStore/cart"
+        to="cart"
         key={"ViewCart-link"}
         role="menuitem"
         tabIndex="-1"
         id={"menu-item-link"}
         className="text-gray-700 w-[400px] flex justify-center font-bold rounded-t-md h-fit border-b-[1px] px-4 py-2 text-sm cursor-pointer hover:bg-slate-300"
       >
-        <span>View Cart</span>
+        View Cart
       </Link>
       {cart.map((cartItem, index) => {
         return (
@@ -74,6 +79,9 @@ const DropDownCart = forwardRef(({ cart, cartMenu }, ref) => {
           </div>
         );
       })}
+      {cart?.length === 0 && (
+        <p className="text-slate-950 p-2">No items in cart</p>
+      )}
     </div>
   );
 });

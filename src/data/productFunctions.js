@@ -1,6 +1,5 @@
 // Function to convert stars number to array
-export const genRatings = (product) => {
-  let rating = product.rating.stars;
+export const genRatings = (rating) => {
   let stars = [..."f".repeat(Math.floor(rating))];
   if (rating * 10 - Math.floor(rating) * 10) {
     stars.push("h");

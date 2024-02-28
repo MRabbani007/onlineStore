@@ -1,6 +1,8 @@
 import axios from "axios";
 // Imported Data
-import { SERVER_URL } from "./utils";
+// import { SERVER_URL } from "./utils";
+
+const SERVER_URL = "";
 
 export const fetchSignin = async (username, password) => {
   try {

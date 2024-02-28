@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // Imported Data
 import { genPrice } from "../data/productFunctions";
 import { IMAGE_URL } from "../data/utils";
+import { GlobalContext } from "../context/GlobalState";
 
-const CartProductCard = ({
-  cartItem,
-  group,
-  handleRemoveItem,
-  handleQuantity,
-}) => {
+const CartProductCard = ({ cartItem, group }) => {
+  const { handleOpenProduct, handleCartRemove, handleCartUpdateQuantity } =
+    useContext(GlobalContext);
+
   const [image, setImage] = useState("");
   const [price, setPrice] = useState({ priceWhole: 0, priceFraction: 0 });
 
@@ -31,6 +30,10 @@ const CartProductCard = ({
   // TODO: implement handle radio for shipping dates
   const handleRadio = () => {};
 
+  const handleQuantity = (quantity) => {
+    handleCartUpdateQuantity(cartItem.id, quantity);
+  };
+
   const genShipping = () => {
     let options = [
       { date: date.getDay() + date.getDate() + date.getMonth(), shipping: 10 },
@@ -47,7 +50,7 @@ const CartProductCard = ({
       <div className="flex flex-wrap justify-between">
         {/* Left Col: Image */}
         <div className="mx-3 my-3 w-[20%] flex justify-center">
-          <img src={image} alt="" className="w-[100px] h-fit" />
+          <img src={image} alt="" className="object-fit" />
         </div>
         <div className="flex flex-wrap flex-1">
           {/* Middle Col: Product Info */}
@@ -82,7 +85,7 @@ const CartProductCard = ({
             </div>
             <div className="my-2">
               <button
-                onClick={() => handleRemoveItem(cartItem.id)}
+                onClick={() => handleCartRemove(cartItem.id)}
                 className="btn btn-yellow mr-2"
               >
                 Remove Item

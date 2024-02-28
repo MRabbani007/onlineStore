@@ -8,9 +8,6 @@ export const FLAG_URL = "src/assets/flags/";
 
 // Items per page
 export const ITEMS_PER_PAGE = 10;
-// Server URL
-export const SERVER_URL = "https://online-store-server-iu6b.onrender.com";
-export const SERVER_URL_DEV = "http://localhost:3000";
 
 const weekday = [
   "Sunday",

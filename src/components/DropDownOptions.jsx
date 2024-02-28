@@ -8,7 +8,7 @@ const DropDownOptions = ({ title, options, selectedValue, handleSelected }) => {
         name={"dropdown-" + title}
         id=""
         value={selectedValue}
-        className="px-2 py-1 border-[1px] border-slate-400"
+        className="border-[1px] border-slate-400"
         onChange={(e) => handleSelected(e.target.value)}
       >
         {options.map((item, index) => {

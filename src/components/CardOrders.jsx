@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 // Imported Data
 import { IMAGE_URL } from "../data/utils";
 // Imported Media
 import buyAgainImg from "../assets/icons/buy-again.png";
+import { IoCloseOutline } from "react-icons/io5";
+import { GlobalContext } from "../context/GlobalState";
 
 const CardOrders = ({ order }) => {
+  const { handleOpenProduct } = useContext(GlobalContext);
   const getImage = (product) => {
     let i = product.property.findIndex((prop) => prop === "image");
     if (i > 0) {
@@ -13,7 +16,7 @@ const CardOrders = ({ order }) => {
   };
   if (!!order) {
     return (
-      <div className="lg:w-[80%] w-full mx-auto border-[1px] rounded-md">
+      <div className="w-full mx-auto border-[1px] rounded-md">
         {/* Header */}
         <div className="flex md:flex-row flex-col justify-between bg-slate-200  px-3 py-1 rounded-t-md">
           <div className="w-[30%]">
@@ -29,13 +32,12 @@ const CardOrders = ({ order }) => {
             <p>{order.orderID || ""}</p>
           </div>
           <div className="">
-            <p className="font-semibold">x</p>
-            <p>-</p>
+            <IoCloseOutline className="icon-md" />
           </div>
         </div>
         <div className="flex lg:flex-row flex-col justify-between bg-slate-200 px-3 py-1"></div>
         {/* Items */}
-        {order.products.length === 0
+        {order?.products?.length === 0
           ? null
           : order.products.map((product, idx) => {
               return (
@@ -52,7 +54,12 @@ const CardOrders = ({ order }) => {
                       <p className="text-xl font-semibold">{product.name}</p>
                       <p>Arriving on: 2023-10-10</p>
                       <p>Quanity: {product.quantity}</p>
-                      <button className="bg-yellow-500 rounded-md px-3 my-2 py-1">
+                      <button
+                        onClick={() => {
+                          handleOpenProduct(product.id);
+                        }}
+                        className="bg-yellow-500 rounded-md px-3 my-2 py-1"
+                      >
                         <img
                           src={buyAgainImg}
                           alt=""

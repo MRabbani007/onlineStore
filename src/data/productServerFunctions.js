@@ -1,5 +1,7 @@
 import axios from "axios";
-import { SERVER_URL } from "./utils";
+// import { SERVER_URL } from "./utils";
+
+const SERVER_URL = "";
 
 // Fetch product from server
 export const fetchProduct = async (productID) => {
