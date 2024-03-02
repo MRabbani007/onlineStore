@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-// Imported Context
-import { GlobalContext } from "../context/GlobalState";
+// Imported Hooks
+import useGlobal from "../hooks/useGlobal";
 // Imported Components
-import ProdHeader from "../features/productPage/prodHeader";
+import ProdHeader from "../features/productPage/ProdHeader";
 import ProdImages from "../features/productPage/ProdImages";
 import ProdSubHeader from "../features/productPage/ProdSubHeader";
 import Checkout from "../features/productPage/Checkout";
@@ -13,7 +13,7 @@ import ProdDetails from "../features/productPage/ProdDetails";
 // Imported Data
 
 const ProductPage = () => {
-  const { loading, product, handleCartAdd } = useContext(GlobalContext);
+  const { loading, product, handleCartAdd } = useGlobal();
 
   // Store Selected Product
   const [selectedProduct, setSelectedProduct] = useState([]);

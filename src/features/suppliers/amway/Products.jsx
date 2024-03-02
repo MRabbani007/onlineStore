@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import Card from "../../../components/Card";
-import { ACTIONS, SERVER } from "../../../data/actions";
+// Imported Hooks
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+// Imported Components
+import Card from "../../../components/Card";
+// Imported Data
+import { ACTIONS, SERVER } from "../../../data/actions";
 
 const Products = ({ supplier }) => {
   const { auth } = useAuth();

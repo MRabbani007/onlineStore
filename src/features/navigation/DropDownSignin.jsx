@@ -69,15 +69,6 @@ const DropDownSignin = forwardRef(({ userMenu, userName }, ref) => {
         Orders & Returns
       </Link>
       <Link
-        to="storeapi"
-        role="menuitem"
-        tabIndex="-1"
-        id="menu-item-200"
-        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
-      >
-        Create Product
-      </Link>
-      <Link
         to="settings"
         role="menuitem"
         tabIndex="-1"

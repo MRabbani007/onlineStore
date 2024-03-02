@@ -34,6 +34,7 @@ import AdminUsers from "./views/admin/AdminUsers";
 
 const ROLES = {
   User: 2001,
+  Supplier: 3010,
   Admin: 5150,
 };
 

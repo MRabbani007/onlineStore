@@ -1,11 +1,14 @@
-import { useContext, useState } from "react";
-import { departments } from "../data/departments";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GlobalContext } from "../context/GlobalState";
+// Imported Hooks
+import useGlobal from "../hooks/useGlobal";
+// Imported Data
+import { departments } from "../data/departments";
+// Imported Icons
 import { IoSearchOutline } from "react-icons/io5";
 
 const NavbarSearch = () => {
-  const { handleSearchSubmit } = useContext(GlobalContext);
+  const { handleSearchSubmit } = useGlobal();
   // Store Search Query and Category
   const [searchQuery, setSearchQuery] = useState("");
   const [searchCat, setSearchCat] = useState("all");

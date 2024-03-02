@@ -1,9 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// Imported Context
-import { GlobalContext } from "../../context/GlobalState";
 // Imported Hooks
 import useAuth from "../../hooks/useAuth";
+import useGlobal from "../../hooks/useGlobal";
 // Imported Components
 import DropDownSignin from "../navigation/DropDownSignin";
 import DropDownCart from "../navigation/DropDownCart";
@@ -19,8 +18,7 @@ import OffCanvas from "../navigation/OffCanvas";
 
 const Navbar = () => {
   const { auth } = useAuth();
-
-  const { cart } = useContext(GlobalContext);
+  const { cart } = useGlobal();
 
   // variables to toggle sidebar and dropdowns
   const [sidebar, setSidebar] = useState(false);

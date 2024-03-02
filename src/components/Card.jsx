@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+// Imported Hooks
+import useAuth from "../hooks/useAuth";
+import useGlobal from "../hooks/useGlobal";
 // Imported Data
 import { genRatings, genPrice } from "../data/productFunctions";
 import { IMAGE_URL } from "../data/utils";
 // Imported Icons
 import { IoStar, IoStarHalf, IoStarOutline } from "react-icons/io5";
-import { GlobalContext } from "../context/GlobalState";
 import { CiEdit } from "react-icons/ci";
-import { useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 
 const Card = ({ product }) => {
-  const { handleOpenProduct, handleOpenEditProduct } =
-    useContext(GlobalContext);
+  const { handleOpenProduct, handleOpenEditProduct } = useGlobal();
   const { role } = useAuth();
 
   const [productImage, setProductImage] = useState("");

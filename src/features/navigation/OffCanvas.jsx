@@ -5,7 +5,7 @@ import { departments } from "../../data/departments";
 // Imported Hooks
 import useGlobal from "../../hooks/useGlobal";
 // Imported Icons
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoSettings } from "react-icons/io5";
 import { IoMdArrowDropright } from "react-icons/io";
 import { BiSupport } from "react-icons/bi";
 // Imported Media
@@ -23,7 +23,7 @@ const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
   };
 
   const [expandDep, setExpandDep] = useState(true);
-  const [expandSettings, setExpandSettings] = useState(true);
+  const [expandSettings, setExpandSettings] = useState(false);
 
   return (
     <div
@@ -97,13 +97,23 @@ const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
             (expandSettings ? " " : " hidden h-0") + " px-3 duration-200"
           }
         >
-          <span className="flex items-center">
-            <img src={flag} alt="Kazakhstan" className="icon-lg mx-2" />
+          <Link
+            to="settings"
+            className="block text-gray-700 px-4 py-2 cursor-pointer"
+          >
+            <img src={flag} alt="Kazakhstan" className="icon-lg mr-2" />
             <span>Kazakhstan</span>
-          </span>
-          <span>
-            <BiSupport className="icon mx-2" />
-            Customer Service
+          </Link>
+          <Link
+            to="settings"
+            className="block text-gray-700 px-4 py-2 cursor-pointer"
+          >
+            <IoSettings className="icon mr-2" />
+            <span>Settings</span>
+          </Link>
+          <span className="block text-gray-700 px-4 py-2 cursor-pointer">
+            <BiSupport className="icon mr-2" />
+            <span>Customer Service</span>
           </span>
         </div>
         <div className="flex my-2">
