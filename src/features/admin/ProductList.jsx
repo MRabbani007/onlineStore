@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ACTIONS, SERVER } from "../../data/actions";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import CardProductList from "./cardProductList";
+import CardProductList from "./CardProductList";
 
 const ProductList = ({ activePage, handleProductCount }) => {
   const { auth } = useAuth();
