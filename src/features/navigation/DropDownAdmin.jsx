@@ -1,24 +1,25 @@
-import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { forwardRef } from "react";
 // Imported Icons
 import { IoSettings } from "react-icons/io5";
 import { FaDollarSign } from "react-icons/fa";
 // Imported Media
-import kzFlag from "../assets/flags/flag-kz.png";
-import usFlag from "../assets/flags/flag-usa.png";
-import useLogout from "../hooks/useLogout";
+import kzFlag from "../../assets/flags/flag-kz.png";
+import usFlag from "../../assets/flags/flag-usa.png";
+import useLogout from "../../hooks/useLogout";
 
-const DropDownSignin = forwardRef(({ userMenu, userName }, ref) => {
+const DropDownSignin = forwardRef(({ viewMenu }, ref) => {
   const logout = useLogout();
+
   const handleSignOut = () => {
     logout();
   };
+
   return (
     <div
       ref={ref}
       className={
-        (userMenu
+        (viewMenu
           ? " visible translate-y-0 opacity-100"
           : " invisible translate-y-[-20px] opacity-0") +
         " absolute right-0 z-10 mt-2 w-40 rounded-md origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none duration-300"
@@ -28,36 +29,15 @@ const DropDownSignin = forwardRef(({ userMenu, userName }, ref) => {
       aria-labelledby="menu-button"
       tabIndex="-1"
     >
-      {userName === "" ? (
-        <Link
-          to="login"
-          role="menuitem"
-          tabIndex="-1"
-          id="menu-item-0"
-          className="text-gray-700 block px-4 py-2 text-sm rounded-t-md cursor-pointer hover:bg-slate-300"
-        >
-          Signin
-        </Link>
-      ) : (
-        <div
-          role="menuitem"
-          tabIndex="-1"
-          id="menu-item-0"
-          onClick={handleSignOut}
-          className="text-gray-700 block px-4 py-2 text-sm rounded-t-md cursor-pointer hover:bg-slate-300"
-        >
-          Signout
-        </div>
-      )}
-      <Link
-        to="register"
+      <div
         role="menuitem"
         tabIndex="-1"
-        id="menu-item-1"
-        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
+        id="menu-item-0"
+        onClick={handleSignOut}
+        className="text-gray-700 block px-4 py-2 text-sm rounded-t-md cursor-pointer hover:bg-slate-300"
       >
-        Signup
-      </Link>
+        Signout
+      </div>
       <Link
         to="orders"
         role="menuitem"
@@ -68,7 +48,43 @@ const DropDownSignin = forwardRef(({ userMenu, userName }, ref) => {
         Orders & Returns
       </Link>
       <Link
-        to="storeapi"
+        to="/admin/users"
+        role="menuitem"
+        tabIndex="-1"
+        id="menu-item-200"
+        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
+      >
+        Users
+      </Link>
+      <Link
+        to="/admin/products"
+        role="menuitem"
+        tabIndex="-1"
+        id="menu-item-200"
+        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
+      >
+        Products
+      </Link>
+      <Link
+        to="/admin/orders"
+        role="menuitem"
+        tabIndex="-1"
+        id="menu-item-200"
+        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
+      >
+        Orders
+      </Link>
+      <Link
+        to="/admin/carts"
+        role="menuitem"
+        tabIndex="-1"
+        id="menu-item-200"
+        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
+      >
+        Carts
+      </Link>
+      <Link
+        to="/createProduct"
         role="menuitem"
         tabIndex="-1"
         id="menu-item-200"

@@ -12,7 +12,6 @@ const CardAddImage = ({ arrayIndex }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch({ type: PRODUCT.IMAGES_ADD, payload: { value, arrayIndex } });
-    setAdd(false);
   };
 
   return (

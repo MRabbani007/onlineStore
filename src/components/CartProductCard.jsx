@@ -14,24 +14,23 @@ const CartProductCard = ({ cartItem, group }) => {
   useEffect(() => {
     setPrice(genPrice(cartItem.priceCents));
     setImage(IMAGE_URL + getValue("image"));
-    // genShipping();
   }, [cartItem]);
 
   const getValue = (property) => {
-    let value = "";
-    cartItem.property.map((prop, index) => {
-      if (prop === property) {
-        value = cartItem.value[index];
-      }
-    });
-    return value;
+    let propIndex = cartItem.property.findIndex((prop) => prop === property);
+    let value = cartItem.value[propIndex];
+    if (property === "image") {
+      return value.split(" ")[1] || value;
+    } else {
+      return value;
+    }
   };
 
   // TODO: implement handle radio for shipping dates
   const handleRadio = () => {};
 
-  const handleQuantity = (quantity) => {
-    handleCartUpdateQuantity(cartItem.id, quantity);
+  const handleQuantity = (itemIndex, quantity) => {
+    handleCartUpdateQuantity(itemIndex, quantity, cartItem.id);
   };
 
   const genShipping = () => {
@@ -47,16 +46,16 @@ const CartProductCard = ({ cartItem, group }) => {
         Delivery Date
       </div>
       {/* Body */}
-      <div className="flex flex-wrap justify-between">
+      <div className="flex flex-wrap justify-between p-3">
         {/* Left Col: Image */}
-        <div className="mx-3 my-3 w-[20%] flex justify-center">
+        <div className="mr-3 my-3 w-[20%] flex justify-center">
           <img src={image} alt="" className="object-fit" />
         </div>
         <div className="flex flex-wrap flex-1">
           {/* Middle Col: Product Info */}
           <div className="lg:flex-1 w-full">
             <h2 className="text-xl font-semibold overflow-hidden text-wrap text-ellipsis w-[95%]">
-              {cartItem && cartItem.name}
+              {cartItem?.name}
             </h2>
             <div className="">
               <span className="text-2xl">{"$" + price.priceWhole}</span>

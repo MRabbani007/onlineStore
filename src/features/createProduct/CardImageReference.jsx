@@ -8,7 +8,7 @@ const CardImageReference = () => {
   const { product, dispatch } = useProduct();
 
   const [edit, setEdit] = useState(false);
-  const [value, setValue] = useState(product?.imageReference || "");
+  const [value, setValue] = useState(product?.imagesBasedOn || "");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,8 +16,8 @@ const CardImageReference = () => {
     setEdit(false);
   };
   useEffect(() => {
-    setValue(product?.imageReference);
-  }, [product?.imageReference]);
+    setValue(product?.imagesBasedOn);
+  }, [product?.imagesBasedOn]);
 
   return (
     <div>

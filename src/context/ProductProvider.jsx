@@ -16,20 +16,28 @@ const initialState = {
   id: crypto.randomUUID(),
   name: "new product",
   category: "category",
+  department: "",
   rating: {
     stars: 4.5,
     count: 10,
   },
   reviews: 0,
   priceCents: 0,
+  salePrice: 0,
+  priceList: [],
   supplier: "supplier",
+  brand: "",
   properties: ["Size", "Style", "Model", "Color"],
   values: [["Size"], ["Style"], ["Model"], ["Color"]],
   imagesBasedOn: "",
   images: [[""]],
   imagesNames: [],
+  imagesURL: "",
   about: ["About this product"],
   details: [],
+  itemWeight: { unit: "kg", weight: 0 },
+  purchased: 0,
+  refURL: "",
 };
 
 export const ProductProvider = ({ children }) => {
@@ -49,11 +57,12 @@ export const ProductProvider = ({ children }) => {
   const [mainImage, setMainImage] = useState("");
 
   useEffect(() => {
-    console.log(loadingEditProduct);
     if (!loadingEditProduct) {
       console.log(editProduct);
       dispatch({ type: PRODUCT.LOAD_PRODUCT, payload: editProduct });
       loadProductProperties();
+      setProductImages(editProduct.images[0]);
+      setMainImage(editProduct.images[0][0]);
     }
   }, [loadingEditProduct, editProduct]);
 

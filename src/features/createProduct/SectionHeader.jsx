@@ -5,7 +5,7 @@ import CardRatingsReviews from "./CardRatingsReviews";
 
 const SectionHeader = () => {
   return (
-    <header className="bg-slate-200 p-3">
+    <header className="w-full bg-slate-200 p-3">
       {/* Product Header */}
       <CardName />
       <CardSupplier />

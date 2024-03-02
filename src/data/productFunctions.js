@@ -19,37 +19,3 @@ export const genPrice = (priceCents) => {
   }
   return { priceWhole, priceFraction };
 };
-
-// Updated
-export const getSelectProperties = (product) => {
-  return product.properties.filter((property) => {
-    return (
-      property === "size" ||
-      property === "style" ||
-      property === "color" ||
-      property === "image"
-    );
-  });
-};
-
-// Updated
-export const parseImageColor = (product, image) => {
-  let imagePropIndex = product.properties.findIndex((prop) => prop === "image");
-  let colorPropIndex = product.properties.findIndex((prop) => prop === "color");
-  let imageIndex = product.values[imagePropIndex].findIndex(
-    (value) => value === image
-  );
-  let color = product.values[colorPropIndex][imageIndex];
-  return color;
-};
-
-// Updated
-export const parseColorImage = (product, color) => {
-  let imagePropIndex = product.properties.findIndex((prop) => prop === "image");
-  let colorPropIndex = product.properties.findIndex((prop) => prop === "color");
-  let colorIndex = product.values[colorPropIndex].findIndex(
-    (value) => value === color
-  );
-  let image = product.values[imagePropIndex][colorIndex];
-  return image;
-};

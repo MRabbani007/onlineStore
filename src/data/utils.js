@@ -33,15 +33,28 @@ const month = [
   "December",
 ];
 
+const weekdayShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const monthShort = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
 export const genDate = (offset = 0) => {
   let date = new Date();
   date.setDate(date.getDate() + offset);
-  return (
-    "" +
-    weekday[date.getDay()] +
-    ", " +
-    date.getDate() +
-    " " +
-    month[date.getMonth()]
-  );
+  return {
+    day: weekdayShort[date.getDay()],
+    date: date.getDate(),
+    month: monthShort[date.getMonth()],
+  };
 };

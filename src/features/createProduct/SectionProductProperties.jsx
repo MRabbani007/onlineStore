@@ -21,18 +21,22 @@ const SectionProductProperties = () => {
         )}
         Properties
       </h2>
-      <CardAddProperty />
-      {Array.isArray(product?.properties) &&
-        product?.properties.map((property, index) => {
-          return (
-            <CardProperty
-              property={property}
-              values={product?.values[index]}
-              key={index}
-              propIndex={index}
-            />
-          );
-        })}
+      {view && (
+        <div>
+          <CardAddProperty />
+          {Array.isArray(product?.properties) &&
+            product?.properties.map((property, index) => {
+              return (
+                <CardProperty
+                  property={property}
+                  values={product?.values[index]}
+                  key={index}
+                  propIndex={index}
+                />
+              );
+            })}
+        </div>
+      )}
     </div>
   );
 };

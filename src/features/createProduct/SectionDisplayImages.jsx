@@ -1,13 +1,16 @@
+import { useState } from "react";
 import { IMAGE_URL } from "../../data/utils";
 import useProduct from "../../hooks/useProduct";
 
 const SectionDisplayImages = () => {
   const { productImages, mainImage, handleMainImage } = useProduct();
 
+  const [expandMain, setExpandMain] = useState(false);
+
   return (
-    <div className="md:w-[30%] w-full flex gap-3">
+    <div className="flex gap-3">
       {/* Image Thumbs */}
-      <div className="flex flex-col gap-2">
+      <div className="flex md:flex-col gap-2">
         {Array.isArray(productImages) &&
           productImages.map((image, index) => {
             if (image === "") {
@@ -26,13 +29,16 @@ const SectionDisplayImages = () => {
                   src={IMAGE_URL + image}
                   className="image-thumb"
                   onMouseOver={() => handleMainImage(index)}
+                  onClick={() => {
+                    setExpandMain(!expandMain);
+                  }}
                 />
               );
             }
           })}
       </div>
       {/* Main Image */}
-      <div className="w-[300px]">
+      <div className={expandMain ? "" : " hidden" + " max-w-[300px]"}>
         {!!mainImage && <img src={IMAGE_URL + mainImage} alt="" />}
       </div>
     </div>

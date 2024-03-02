@@ -8,7 +8,9 @@ import { GlobalContext } from "../context/GlobalState";
 import SkeletonContentPage from "../skeletons/SkeletonStorePage";
 
 const Store = () => {
-  const { displayProducts, loadingStore } = useContext(GlobalContext);
+  const { displayProducts, loadingStore, pages, activePage, handlePage } =
+    useContext(GlobalContext);
+
   // Navigation
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,19 +18,27 @@ const Store = () => {
   return (
     <>
       <div className="">
-        <Paginnation />
+        <Paginnation
+          pages={pages}
+          activePage={activePage}
+          handlePage={handlePage}
+        />
         {loadingStore ? (
           <SkeletonContentPage />
         ) : (
           <div className="flex flex-wrap gap-4 justify-center">
-            {displayProducts.length !== 0 &&
+            {Array.isArray(displayProducts) &&
               displayProducts.map((product, index) => {
                 return <Card product={product} key={crypto.randomUUID()} />;
               })}
           </div>
         )}
       </div>
-      <Paginnation />
+      <Paginnation
+        pages={pages}
+        activePage={activePage}
+        handlePage={handlePage}
+      />
     </>
   );
 };

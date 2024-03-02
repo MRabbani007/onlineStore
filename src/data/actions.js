@@ -14,10 +14,12 @@ export const ACTIONS = {
   ORDER_REMOVE: "ORDER_REMOVE",
   SIGNIN: "SIGNIN",
   SIGNUP: "SIGNUP",
+  ADMIN_ORDER_GET: "ADMIN_ORDER_GET",
 };
 
 export const SERVER = {
   PRODUCTS_SEARCH: "/products/search",
+  PRODUCTS_SUPPLIER: "/products/supplier",
   PRODUCTS_GET: "/products/get",
   PRODUCTS_UPDATE: "/products/update",
   PRODUCTS_CREATE: "/products/create",
@@ -27,7 +29,7 @@ export const SERVER = {
   CART_REMOVE: "/cart/remove",
   CART_UPDATE_ITEM: "/cart/updateItem",
   CART_UPDATE_QUANTITY: "/cart/updateQuantity",
-  ORDER_GET: "/order/get",
+  ORDER_GET: "/order/getuser",
   ORDER_CREATE: "/order/create",
   ORDER_REMOVE: "/order/remove",
   USER_SIGNIN: "/user/auth",
@@ -37,6 +39,8 @@ export const SERVER = {
   GET_USER_SETTINGS: "/user/settings",
   USER_EDIT_SETTINGS: "/user/settings",
   USER_PWD: "/user/pwd",
+  ADMIN_CART_GET: "/cart/getAll",
+  ADMIN_ORDER_GET: "/order/getall",
 };
 
 export const PRODUCT = {

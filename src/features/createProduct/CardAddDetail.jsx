@@ -15,7 +15,7 @@ const CardAddDetail = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: PRODUCT.DETAILS_ADD, payload: { name, detail } });
+    dispatch({ type: PRODUCT.DETAILS_ADD, payload: { name, value: detail } });
   };
 
   useEffect(() => {

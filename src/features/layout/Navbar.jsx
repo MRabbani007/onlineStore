@@ -1,29 +1,21 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // Imported Context
-import { UserContext } from "../../context/UserState";
+import { GlobalContext } from "../../context/GlobalState";
 // Imported Hooks
 import useAuth from "../../hooks/useAuth";
 // Imported Components
-import DropDownSignin from "../../components/DropDownSignin";
-import DropDownCart from "../../components/DropDownCart";
+import DropDownSignin from "../navigation/DropDownSignin";
+import DropDownCart from "../navigation/DropDownCart";
+import DropDownAdmin from "../navigation/DropDownAdmin";
 import NavbarSearch from "../../components/NavbarSearch";
-// Imported Icons
-import { FiUser } from "react-icons/fi";
-import { TbReportAnalytics } from "react-icons/tb";
-import {
-  IoAddCircleOutline,
-  IoCartOutline,
-  IoHomeOutline,
-  IoMenu,
-  IoSettingsOutline,
-} from "react-icons/io5";
+// Imported Icons;
+import { IoCartOutline, IoMenu, IoSearchOutline } from "react-icons/io5";
 import { RiAdminLine, RiArrowDownSLine } from "react-icons/ri";
 import { FaRegCircleUser } from "react-icons/fa6";
 // Imported Media
 import logo from "../../assets/icons/logo.png";
-import { GlobalContext } from "../../context/GlobalState";
-import OffCanvas from "../../components/OffCanvas";
+import OffCanvas from "../navigation/OffCanvas";
 
 const Navbar = () => {
   const { auth } = useAuth();
@@ -32,8 +24,11 @@ const Navbar = () => {
 
   // variables to toggle sidebar and dropdowns
   const [sidebar, setSidebar] = useState(false);
-  const [userMenu, setUserMenu] = useState(() => false);
+  const [userMenu, setUserMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
+  const [adminMenu, setAdminMenu] = useState(false);
+
+  const [viewSearch, setViewSearch] = useState(false);
 
   // Page Navigation
   const navigate = useNavigate();
@@ -52,6 +47,10 @@ const Navbar = () => {
     setUserMenu(!userMenu);
   };
 
+  const handleAdminDropDown = () => {
+    setAdminMenu(!adminMenu);
+  };
+
   const closeUserMenue = (e) => {
     if (!userMenuRef.current.contains(e.target)) {
       setUserMenu(false);
@@ -62,9 +61,13 @@ const Navbar = () => {
     if (!sidebarRef.current.contains(e.target)) {
       setSidebar(false);
     }
+    if (!adminMenuRef.current.contains(e.target)) {
+      setAdminMenu(false);
+    }
   };
 
   const userMenuRef = useRef(null);
+  const adminMenuRef = useRef(null);
   const cartMenuRef = useRef(null);
   const sidebarRef = useRef(null);
 
@@ -94,29 +97,47 @@ const Navbar = () => {
           </Link>
         </span>
         {/* Middle Search Bar */}
-        <NavbarSearch />
+        <div className="hidden sm:block">
+          <NavbarSearch />
+        </div>
+
         {/* Right Block */}
         <div className="flex justify-between items-center">
+          <IoSearchOutline
+            className="sm:hidden icon-md"
+            onClick={() => {
+              setViewSearch(!viewSearch);
+            }}
+          />
           {/* User Dropdown */}
           <div
-            className="relative inline-block text-left mr-3"
+            className="relative inline-block text-left mx-3"
             id="user-menu-button"
             aria-expanded="true"
             aria-haspopup="true"
           >
-            <span
-              onClick={() => handleUserDropDown()}
-              className="cursor-pointer"
-            >
-              {auth?.user !== "" && auth?.user}
-              <FaRegCircleUser className="icon-md ml-2" />
-              <RiArrowDownSLine className="icon-sm" />
-            </span>
+            {auth?.roles.includes(5150) ? (
+              <span onClick={handleAdminDropDown}>
+                {auth?.user !== "" && auth?.user}
+                <RiAdminLine className="icon-md ml-2" />
+                <RiArrowDownSLine className="icon-sm" />
+              </span>
+            ) : (
+              <span
+                onClick={() => handleUserDropDown()}
+                className="cursor-pointer"
+              >
+                {auth?.user !== "" && auth?.user}
+                <FaRegCircleUser className="icon-md ml-2" />
+                <RiArrowDownSLine className="icon-sm" />
+              </span>
+            )}
             <DropDownSignin
               ref={userMenuRef}
               userMenu={userMenu}
               userName={auth?.user}
             />
+            <DropDownAdmin viewMenu={adminMenu} ref={adminMenuRef} />
           </div>
           {/* Cart Dropdown */}
           <div
@@ -139,6 +160,15 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <div
+        className={
+          viewSearch
+            ? " sm:hidden fixed top-[50px] left-0 right-0 h-[50px] "
+            : " hidden " + " duration-200 z-[40000]"
+        }
+      >
+        <NavbarSearch />
+      </div>
       <OffCanvas
         ref={sidebarRef}
         handleSidebar={handleSidebar}

@@ -1,5 +1,3 @@
-import React from "react";
-
 const DropDownOptions = ({ title, options, selectedValue, handleSelected }) => {
   return (
     <div className="flex items-center">

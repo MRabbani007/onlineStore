@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useEffect,
@@ -44,6 +44,9 @@ export const GlobalProvider = ({ children }) => {
   // Product Page
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
+  // Hold display images
+  const [productImages, setProductImages] = useState([]);
+  const [mainImage, setMainImage] = useState(false);
 
   // Create Product Page
   const [editProduct, setEditProduct] = useState({});
@@ -118,7 +121,7 @@ export const GlobalProvider = ({ children }) => {
     setCart((prev) => {
       let newCart = prev.filter((item) => item.id !== selectedProduct.id);
       newCart.push(selectedProduct);
-      return newCart;
+      return [...newCart];
     });
     alert("added " + selectedProduct.name);
   };
@@ -137,9 +140,8 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
-  const handleCartUpdateQuantity = async (id, quantity) => {
+  const handleCartUpdateQuantity = async (itemIndex, quantity, id) => {
     setCart((prev) => {
-      let itemIndex = prev.findIndex((item) => item.id === id);
       prev[itemIndex].quantity = quantity;
       return [...prev];
     });
@@ -244,6 +246,7 @@ export const GlobalProvider = ({ children }) => {
         payload: { userName: auth?.user, product },
       },
     });
+    console.log(response.data);
     if (response?.data) {
       setEditProduct(response.data);
       alert("Product Created");
@@ -282,6 +285,23 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
+  // set main image on thumb hover
+  const handleMainImage = (index) => {
+    setMainImage(productImages[index]);
+  };
+
+  const handleDisplayImages = (index) => {
+    setProductImages(product.images[index]);
+    setMainImage(product.images[index][0]);
+  };
+
+  useEffect(() => {
+    if (product?.images) {
+      setProductImages(product.images[0]);
+      setMainImage(product.images[0][0]);
+    }
+  }, [product]);
+
   useEffect(() => {
     handleSearch();
   }, [activePage, searchCat, searchQuery, temp]);
@@ -298,14 +318,21 @@ export const GlobalProvider = ({ children }) => {
       value={{
         displayProducts,
         loadingStore,
+        pages,
+        activePage,
+
         cart,
         orders,
         handleSearchSubmit,
-        pages,
-        activePage,
         handlePage,
+
         loading,
         product,
+        productImages,
+        mainImage,
+        handleDisplayImages,
+        handleMainImage,
+
         editProduct,
         loadingEditProduct,
         handleOpenProduct,

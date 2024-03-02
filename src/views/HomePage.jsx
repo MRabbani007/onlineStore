@@ -1,7 +1,7 @@
 import React from "react";
 // Imported Components
-import CardHomePage from "../components/CardHomePage";
-import Brands from "../components/Brands";
+import CardHomePage from "../features/homePage/CardHomePage";
+import Brands from "../features/homePage/Brands";
 // Imported Data
 import { cardData1, cardData2, cardData3 } from "../data/homepage";
 

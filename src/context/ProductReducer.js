@@ -67,6 +67,10 @@ export const productReducer = (state, { type, payload }) => {
         state.imagesNames.splice(payload, 1);
         return { ...state };
       }
+      case PRODUCT.IMAGES_NAMES_EDIT: {
+        state.imagesNames[payload.arrayIndex] = payload.value;
+        return { ...state };
+      }
       case PRODUCT.ABOUT_ADD: {
         state.about.push(payload);
         return { ...state };
@@ -81,6 +85,7 @@ export const productReducer = (state, { type, payload }) => {
       }
       case PRODUCT.DETAILS_ADD: {
         state.details.push(payload);
+        console.log(state.details);
         return { ...state };
       }
       case PRODUCT.DETAILS_REMOVE: {

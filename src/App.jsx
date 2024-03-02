@@ -23,12 +23,14 @@ import Unauthorized from "./views/Unauthorized";
 
 import Store from "./views/Store";
 import Cart from "./views/Cart";
-import Signin from "./views/Signin";
-import Signup from "./views/Signup";
 import OrdersPage from "./views/OrdersPage";
 import ProductPage from "./views/ProductPage";
 import CreateProductPage from "./views/CreateProductPage";
-import { ProductProvider } from "./context/ProductProvider";
+import SupplierPage from "./views/SupplierPage";
+import AdminProducts from "./views/admin/AdminProducts";
+import AdminOrders from "./views/admin/AdminOrders";
+import AdminCarts from "./views/admin/AdminCarts";
+import AdminUsers from "./views/admin/AdminUsers";
 
 const ROLES = {
   User: 2001,
@@ -50,6 +52,7 @@ function App() {
                 <Route path="unauthorized" element={<Unauthorized />} />
                 <Route path="store" element={<Store />} />
                 <Route path="product" element={<ProductPage />} />
+                <Route path="supplier" element={<SupplierPage />} />
 
                 {/* Pages available to users */}
                 <Route
@@ -66,7 +69,17 @@ function App() {
                 {/* Admin page available to admin */}
                 <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                   <Route path="createProduct" element={<CreateProductPage />} />
-                  <Route path="admin" element={<AdminPage />} />
+                </Route>
+
+                <Route
+                  path="admin"
+                  element={<RequireAuth allowedRoles={[ROLES.Admin]} />}
+                >
+                  <Route path="main" element={<AdminPage />} />
+                  <Route path="users" element={<AdminUsers />} />
+                  <Route path="products" element={<AdminProducts />} />
+                  <Route path="orders" element={<AdminOrders />} />
+                  <Route path="carts" element={<AdminCarts />} />
                 </Route>
               </Route>
 

@@ -21,13 +21,12 @@ const NavbarSearch = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSearchSubmit(searchQuery, searchCat);
-    console.log("first");
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="sm:flex items-stretch justify-center hidden flex-1 h-full py-2 text-slate-950"
+      className="flex items-stretch justify-center flex-1 h-full py-2 bg-slate-950 text-slate-950"
     >
       <select
         className="bg-yellow-500 hover:text-slate-100 duration-300 cursor-pointer px-2 lg:w-[100px] w-[60px] rounded-l-md outline-none"

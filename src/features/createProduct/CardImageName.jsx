@@ -52,7 +52,7 @@ const CardImageName = ({ imageName, arrayIndex }) => {
       ) : (
         <>
           <span className="" onClick={handleImage}>
-            {value === "" ? "No Name" : value}
+            {value === undefined || value === "" ? "No Name" : value}
           </span>
           <CiEdit
             className="icon hidden group-hover:inline"

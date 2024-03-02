@@ -1,23 +1,26 @@
-import React, { forwardRef, useContext } from "react";
+import { forwardRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // Imported Data
-import { IMAGE_URL } from "../data/utils";
-import { GlobalContext } from "../context/GlobalState";
+import { IMAGE_URL } from "../../data/utils";
+// Imported Hooks
+import useGlobal from "../../hooks/useGlobal";
 
 const DropDownCart = forwardRef(({ cartMenu }, ref) => {
-  const { cart, handleOpenProduct } = useContext(GlobalContext);
+  const { cart, handleOpenProduct } = useGlobal();
 
   // Page navigation
   const navigate = useNavigate();
 
   const getValue = (cartItemIndex, property) => {
-    let value = "";
-    cart[cartItemIndex].property.map((prop, index) => {
-      if (prop === property) {
-        value = cart[cartItemIndex].value[index];
-      }
-    });
-    return value;
+    let propIndex = cart[cartItemIndex].property.findIndex(
+      (prop) => prop === property
+    );
+    let value = cart[cartItemIndex].value[propIndex];
+    if (property === "image") {
+      return value.split(" ")[1] || value;
+    } else {
+      return value;
+    }
   };
 
   const handleClick = (productID) => {
@@ -56,7 +59,9 @@ const DropDownCart = forwardRef(({ cartMenu }, ref) => {
             role="menuitem"
             tabIndex="-1"
             id={"menu-item-" + index}
-            onClick={() => handleClick(cartItem.id)}
+            onClick={() => {
+              handleClick(cartItem?.prodID || cartItem?.id);
+            }}
             className={`text-gray-700 w-[400px] flex justify-between px-4 py-2 text-sm cursor-pointer hover:bg-slate-300 ${
               index === cart.length - 1 ? "rounded-b-md" : ""
             }`}

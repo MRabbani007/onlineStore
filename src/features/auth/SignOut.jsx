@@ -7,6 +7,8 @@ const SignOut = () => {
   const logout = useLogout();
   const todayDate = genDate();
 
+  console.log(todayDate);
+
   return (
     <div>
       {/* Header */}
