@@ -10,12 +10,17 @@ import { IoMdArrowDropright } from "react-icons/io";
 import { BiSupport } from "react-icons/bi";
 // Imported Media
 import flag from "../../assets/flags/flag-kz.png";
-import logo from "../../assets/icons/logo.png";
 import useAuth from "../../hooks/useAuth";
+import useLogout from "../../hooks/useLogout";
 
 const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
   const { auth } = useAuth();
   const { handleSearchSubmit } = useGlobal();
+  const logout = useLogout();
+
+  const handleLogout = () => {
+    logout();
+  };
 
   const handleDepartment = (dep) => {
     handleSidebar();
@@ -29,27 +34,29 @@ const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
     <div
       ref={ref}
       className={
-        (sidebar ? " left-0 " : " left-[-100%] ") +
-        " fixed top-0 h-screen w-[300px] bg-slate-300 text-slate-950 flex flex-col z-40 pt-[0px] duration-500"
+        (sidebar ? " left-[10px] " : " left-[-100%] ") +
+        " fixed top-[60px] bottom-[10px] w-[300px] bg-slate-300 text-slate-950 rounded-lg shadow-lg shadow-zinc-500 flex flex-col z-40 pt-[0px] duration-500"
       }
     >
-      <div className="flex justify-between py-2 px-2 bg-slate-950 text-slate-50">
-        <img src={logo} alt="" className="w-[100px]" />
-        <button onClick={handleSidebar} className="">
+      <div className="relative bg-zinc-800 text-zinc-300 rounded-t-lg">
+        <button
+          onClick={handleSidebar}
+          className="absolute right-2 top-2 hover:text-zinc-50 duration-200"
+        >
           <IoClose className="icon-md" />
         </button>
-      </div>
-      <div className="px-3">
-        <h1 className="">
+        <h1 className="  px-3 py-2">
           <span>Hello</span>
           {auth?.user === "" ? (
-            <Link to="login" className="text-sky-700">
-              , Sign In
+            <Link to="login">
+              , <span className="text-sky-700">Sign In</span>
             </Link>
           ) : (
             " " + auth.user + ","
           )}
         </h1>
+      </div>
+      <div className="px-3 py-3 h-full relative">
         <h2 className="cursor-pointer" onClick={() => setExpandDep(!expandDep)}>
           Shop by department
           <IoMdArrowDropright
@@ -117,18 +124,26 @@ const OffCanvas = forwardRef(({ sidebar, handleSidebar }, ref) => {
           </span>
         </div>
         <div className="flex my-2">
-          <Link
-            to="register"
-            className="bg-slate-500 text-slate-50 rounded-md mx-2 py-2 px-4"
-          >
-            Signup
-          </Link>
-          <Link
-            to="login"
-            className="bg-yellow-500 text-slate-950 rounded-md mx-2 py-2 px-4"
-          >
-            Signin
-          </Link>
+          {auth?.user ? (
+            <button onClick={handleLogout} className="btn btn-red">
+              Sign Out
+            </button>
+          ) : (
+            <>
+              <Link
+                to="register"
+                className="bg-slate-500 text-slate-50 rounded-md mx-2 py-2 px-4"
+              >
+                Signup
+              </Link>
+              <Link
+                to="login"
+                className="bg-yellow-500 text-slate-950 rounded-md mx-2 py-2 px-4"
+              >
+                Signin
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

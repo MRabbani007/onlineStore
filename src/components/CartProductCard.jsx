@@ -13,7 +13,7 @@ const CartProductCard = ({ cartItem, group }) => {
 
   useEffect(() => {
     setPrice(genPrice(cartItem.priceCents));
-    setImage(IMAGE_URL + getValue("image"));
+    setImage(IMAGE_URL + (cartItem?.imagesURL || "") + getValue("image"));
   }, [cartItem]);
 
   const getValue = (property) => {

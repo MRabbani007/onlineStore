@@ -29,12 +29,12 @@ const NavbarSearch = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-stretch justify-center flex-1 h-full py-2 bg-slate-950 text-slate-950"
+      className="flex items-stretch justify-center flex-1 h-full py-1 text-zinc-950 z-[40000]"
     >
       <select
         className="bg-yellow-500 hover:text-slate-100 duration-300 cursor-pointer px-2 lg:w-[100px] w-[60px] rounded-l-md outline-none"
         name="searchCatDropDown"
-        id=""
+        id={crypto.randomUUID()}
         value={searchCat}
         onChange={(e) => handleSearchCat(e.target.value)}
       >

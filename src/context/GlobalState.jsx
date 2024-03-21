@@ -48,10 +48,6 @@ export const GlobalProvider = ({ children }) => {
   const [productImages, setProductImages] = useState([]);
   const [mainImage, setMainImage] = useState(false);
 
-  // Create Product Page
-  const [editProduct, setEditProduct] = useState({});
-  const [loadingEditProduct, setLoadingEditProduct] = useState(true);
-
   // Store Page Products
   const [displayProducts, setDisplayProducts] = useState([]);
   const [loadingStore, setLoadingStore] = useState(true);
@@ -154,9 +150,8 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
-  const handleCartUpdateItem = async () => {
-    // TODO: implement
-  };
+  // TODO: implement
+  const handleCartUpdateItem = async () => {};
 
   const handleOrderGet = async () => {
     try {
@@ -197,72 +192,6 @@ export const GlobalProvider = ({ children }) => {
       console.log(error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleOpenEditProduct = async (productID) => {
-    handleProductEditGet(productID);
-    navigate("/createProduct", { state: { productID: product.id } });
-  };
-
-  const handleProductEditGet = async (productID) => {
-    try {
-      setLoadingEditProduct(true);
-      let response = await axiosPrivate.post(SERVER.PRODUCTS_GET, {
-        roles: auth?.roles,
-        action: {
-          type: ACTIONS.PRODUCTS_GET,
-          payload: { userName: auth?.user, productID },
-        },
-      });
-      if (response?.data) {
-        setEditProduct(response.data);
-      }
-    } catch (error) {
-    } finally {
-      setLoadingEditProduct(false);
-    }
-  };
-
-  const handleProductUpdate = async (product) => {
-    let response = await axiosPrivate.post(SERVER.PRODUCTS_UPDATE, {
-      roles: auth?.roles,
-      action: {
-        type: ACTIONS.PRODUCTS_UPDATE,
-        payload: { userName: auth?.user, product },
-      },
-    });
-    if (response?.data) {
-      alert("Product Saved");
-      navigate("store");
-    }
-  };
-
-  const handleProductCreate = async (product) => {
-    let response = await axiosPrivate.post(SERVER.PRODUCTS_CREATE, {
-      roles: auth?.roles,
-      action: {
-        type: ACTIONS.PRODUCTS_CREATE,
-        payload: { userName: auth?.user, product },
-      },
-    });
-    console.log(response.data);
-    if (response?.data) {
-      setEditProduct(response.data);
-      alert("Product Created");
-    }
-  };
-
-  const handleProductRemove = async (productID) => {
-    let response = await axiosPrivate.post(SERVER.PRODUCTS_CREATE, {
-      roles: auth?.roles,
-      action: {
-        type: ACTIONS.PRODUCTS_CREATE,
-        payload: { userName: auth?.user, productID },
-      },
-    });
-    if (response?.data?.status === "success") {
-      setEditProduct({});
     }
   };
 
@@ -333,18 +262,11 @@ export const GlobalProvider = ({ children }) => {
         handleDisplayImages,
         handleMainImage,
 
-        editProduct,
-        loadingEditProduct,
         handleOpenProduct,
         handleCartAdd,
         handleCartRemove,
         handleCartUpdateQuantity,
         handlePlaceOrder,
-        handleOpenEditProduct,
-        handleProductEditGet,
-        handleProductUpdate,
-        handleProductCreate,
-        handleProductRemove,
       }}
     >
       {children}

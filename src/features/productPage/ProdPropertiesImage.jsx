@@ -29,7 +29,7 @@ const ProdPropertiesImage = ({ addproperty, isSelected }) => {
             return (
               <div key={index}>
                 <img
-                  src={IMAGE_URL + imageArray[0]}
+                  src={IMAGE_URL + (product?.imagesURL || "") + imageArray[0]}
                   className={
                     (isSelected("image", imageArray[0])
                       ? " border-[2px] border-yellow-500 "

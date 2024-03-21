@@ -5,19 +5,23 @@ import { IoCheckmark, IoCloseOutline } from "react-icons/io5";
 import { CiEdit } from "react-icons/ci";
 import { FaTimes } from "react-icons/fa";
 import useProduct from "../../hooks/useProduct";
+import InputForm from "../../components/InputForm";
 
-const CardImage = ({ prodImage, imageIndex, arrayIndex }) => {
+const CardImage = ({ prodImage, imageIndex, arrayIndex, imagesURL }) => {
   const { dispatch } = useProduct();
 
   const [edit, setEdit] = useState(false);
   const [value, setValue] = useState(prodImage);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (value) => {
     dispatch({
       type: PRODUCT.IMAGES_EDIT,
       payload: { arrayIndex, imageIndex, value },
     });
+    setEdit(false);
+  };
+
+  const handleClose = () => {
     setEdit(false);
   };
 
@@ -36,21 +40,14 @@ const CardImage = ({ prodImage, imageIndex, arrayIndex }) => {
   return (
     <div className="edit-cont">
       {edit ? (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Image Name"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
-          <button>
-            <IoCheckmark className="icon" />
-          </button>
-          <IoCloseOutline className="icon" onClick={() => setEdit(false)} />
-        </form>
+        <InputForm handleSubmit={handleSubmit} handleClose={handleClose} />
       ) : (
         <div className="group relative">
-          <img alt="image" src={IMAGE_URL + value} className="image-thumb" />
+          <img
+            alt="image"
+            src={IMAGE_URL + imagesURL + value}
+            className="image-thumb border-[1px] rounded-sm"
+          />
           <CiEdit
             className="icon-md invisible group-hover:visible absolute top-0 left-0 bg-slate-200"
             onClick={() => setEdit(true)}

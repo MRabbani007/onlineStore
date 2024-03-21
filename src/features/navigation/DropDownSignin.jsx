@@ -30,15 +30,26 @@ const DropDownSignin = forwardRef(({ userMenu, userName }, ref) => {
       tabIndex="-1"
     >
       {userName === "" ? (
-        <Link
-          to="login"
-          role="menuitem"
-          tabIndex="-1"
-          id="menu-item-0"
-          className="text-gray-700 block px-4 py-2 text-sm rounded-t-md cursor-pointer hover:bg-slate-300"
-        >
-          Signin
-        </Link>
+        <>
+          <Link
+            to="login"
+            role="menuitem"
+            tabIndex="-1"
+            id="menu-item-0"
+            className="text-gray-700 block px-4 py-2 text-sm rounded-t-md cursor-pointer hover:bg-slate-300"
+          >
+            Signin
+          </Link>
+          <Link
+            to="register"
+            role="menuitem"
+            tabIndex="-1"
+            id="menu-item-1"
+            className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
+          >
+            Signup
+          </Link>
+        </>
       ) : (
         <div
           role="menuitem"
@@ -50,15 +61,6 @@ const DropDownSignin = forwardRef(({ userMenu, userName }, ref) => {
           Signout
         </div>
       )}
-      <Link
-        to="register"
-        role="menuitem"
-        tabIndex="-1"
-        id="menu-item-1"
-        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
-      >
-        Signup
-      </Link>
       <Link
         to="orders"
         role="menuitem"

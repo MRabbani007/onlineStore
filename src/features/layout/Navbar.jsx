@@ -27,6 +27,7 @@ const Navbar = () => {
   const [adminMenu, setAdminMenu] = useState(false);
 
   const [viewSearch, setViewSearch] = useState(false);
+  const [expandSearch, setExpandSearch] = useState(false);
 
   // Page Navigation
   const navigate = useNavigate();
@@ -78,31 +79,43 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar px-5 duration-500 z-50 bg-zinc-950 text-zinc-300">
+      <menu className="navbar text-zinc-300 border-none bg-zinc-950">
         {/* Left Block */}
-        <span className="flex items-center">
+        <div className=" flex justify-between items-center h-full flex-nowrap pl-4 rounded-l-lg gap-2 bg-zinc-950">
           <IoMenu
-            className="icon-md cursor-pointer shrink-0"
+            className="menu-icon"
             title="SideNav"
             onClick={handleSidebar}
           />
-          <Link to="/">
+          <Link to="/" className="">
             <img
               src={logo}
               alt="Sleek Logo"
-              className="w-[80px] h-[30px] ml-2 cursor-pointer"
+              className="w-[80px] h-[30px] cursor-pointer"
             />
           </Link>
-        </span>
+        </div>
+
         {/* Middle Search Bar */}
-        <div className="hidden sm:block">
+        <div
+          className={
+            (expandSearch ? " flex-1  " : " invisible opacity-0 w-0 ") +
+            " sm:inline-block hidden duration-300 mx-auto  h-full"
+          }
+        >
           <NavbarSearch />
         </div>
 
         {/* Right Block */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center rounded-r-lg bg-zinc-950 pl-2 h-full">
           <IoSearchOutline
-            className="sm:hidden icon-md"
+            className="menu-icon sm:inline hidden "
+            onClick={() => {
+              setExpandSearch(!expandSearch);
+            }}
+          />
+          <IoSearchOutline
+            className="sm:hidden menu-icon"
             onClick={() => {
               setViewSearch(!viewSearch);
             }}
@@ -115,19 +128,22 @@ const Navbar = () => {
             aria-haspopup="true"
           >
             {auth?.roles.includes(5150) ? (
-              <span onClick={handleAdminDropDown}>
+              <span
+                onClick={handleAdminDropDown}
+                className="cursor-pointer hover:text-slate-50 duration-300"
+              >
                 {auth?.user !== "" && auth?.user}
-                <RiAdminLine className="icon-md ml-2" />
-                <RiArrowDownSLine className="icon-sm" />
+                <RiAdminLine className="icon ml-2" />
+                <RiArrowDownSLine className="icon-md" />
               </span>
             ) : (
               <span
                 onClick={() => handleUserDropDown()}
-                className="cursor-pointer"
+                className="cursor-pointer hover:text-slate-50 duration-300"
               >
                 {auth?.user !== "" && auth?.user}
-                <FaRegCircleUser className="icon-md ml-2" />
-                <RiArrowDownSLine className="icon-sm" />
+                <FaRegCircleUser className="icon ml-2" />
+                <RiArrowDownSLine className="icon-md" />
               </span>
             )}
             <DropDownSignin
@@ -139,25 +155,21 @@ const Navbar = () => {
           </div>
           {/* Cart Dropdown */}
           <div
-            className="relative inline-block text-left mr-3"
+            className="relative inline-block text-left mr-3 cursor-pointer group"
             id="cart-menu-button"
             aria-expanded="true"
             aria-haspopup="true"
+            onClick={() => handleCartDropDown()}
           >
-            <span
-              className="cursor-pointer"
-              onClick={() => handleCartDropDown()}
-            >
-              <span className="absolute top-[-10px] left-[10px] rounded-full bg-yellow-500 w-[15px] text-center">
-                {cart?.length ? cart.length : 0}
-              </span>
-              <IoCartOutline className="icon-md" />
-              <RiArrowDownSLine className="icon-sm" />
+            <span className="absolute bottom-[20px] right-[23px] rounded-full bg-yellow-400 group-hover:bg-yellow-300 duration-300 text-zinc-800 w-7 h-7 flex items-center justify-center">
+              {cart?.length ? cart.length : 0}
             </span>
+            <IoCartOutline className="icon-lg w-8 group-hover:text-slate-50 duration-300" />
+            <RiArrowDownSLine className="icon-md group-hover:text-slate-50 duration-300" />
             <DropDownCart ref={cartMenuRef} cartMenu={cartMenu} />
           </div>
         </div>
-      </nav>
+      </menu>
       <div
         className={
           viewSearch

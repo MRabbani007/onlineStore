@@ -10,6 +10,9 @@ import Checkout from "../features/productPage/Checkout";
 import ProdProperties from "../features/productPage/ProdProperties";
 import ProdPropertiesImage from "../features/productPage/ProdPropertiesImage";
 import ProdDetails from "../features/productPage/ProdDetails";
+import RelatedItems from "../features/productPage/RelatedItems";
+import ProductReviews from "../features/productPage/ProductReviews";
+import ProductSpecs from "../features/productPage/ProductSpecs";
 // Imported Data
 
 const ProductPage = () => {
@@ -48,7 +51,6 @@ const ProductPage = () => {
     );
     if (propIndex >= 0) {
       if (property === "image") {
-        console.log(selectedProduct.value[propIndex]);
         if (selectedProduct.value[propIndex].split(" ")[1] === value) {
           return true;
         } else {
@@ -98,37 +100,45 @@ const ProductPage = () => {
         property: [...requiredProps],
         value: Array(requiredProps.length).fill(""),
         quantity: 1,
+        imagesURL: product?.imagesURL || "",
       });
     }
   }, [loading, product]);
 
   return (
-    <div className="text-slate-950 flex md:flex-nowrap flex-wrap px-5 gap-5">
-      {loading ? null : (
-        <>
-          {/* Left Column: images */}
-          <ProdImages />
-          {/* Middle Column: Product info */}
-          <div className="md:flex-1 w-full border-[1px]">
-            <ProdHeader />
-            <div className="p-3">
-              <ProdSubHeader />
-              <h2 className="text-2xl font-semibold">Product Details</h2>
-              <ProdProperties
-                addproperty={addproperty}
-                isSelected={isSelected}
-              />
-              <ProdPropertiesImage
-                addproperty={addproperty}
-                isSelected={isSelected}
-              />
-              <ProdDetails />
+    <div>
+      <div className="text-slate-950 flex md:flex-nowrap flex-wrap px-5 gap-5">
+        {loading ? null : (
+          <>
+            {/* Left Column: images */}
+            <ProdImages />
+            {/* Middle Column: Product info */}
+            <div className="md:flex-1 w-full rounded-lg shadow-lg">
+              <ProdHeader />
+              <div className="p-3">
+                <ProdSubHeader />
+                <h2 className="text-2xl font-semibold">Product Details</h2>
+                <ProdProperties
+                  addproperty={addproperty}
+                  isSelected={isSelected}
+                />
+                <ProdPropertiesImage
+                  addproperty={addproperty}
+                  isSelected={isSelected}
+                />
+                <ProdDetails />
+              </div>
             </div>
-          </div>
-          {/* Right Column: Checkout */}
-          <Checkout handleSubmit={handleSubmit} />
-        </>
-      )}
+            {/* Right Column: Checkout */}
+            <Checkout handleSubmit={handleSubmit} />
+          </>
+        )}
+      </div>
+      <div className="md:px-5">
+        <RelatedItems />
+        <ProductReviews />
+        <ProductSpecs />
+      </div>
     </div>
   );
 };

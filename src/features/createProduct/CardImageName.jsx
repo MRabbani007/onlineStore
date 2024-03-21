@@ -35,34 +35,37 @@ const CardImageName = ({ imageName, arrayIndex }) => {
   }, [imageName]);
 
   return (
-    <div className="edit-item group">
+    <div className="edit-item">
       {edit ? (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex items-center gap-2 w-fit">
           <input
             type="text"
             placeholder="Image Group Name"
             value={value}
+            className="field__input"
             onChange={(e) => setValue(e.target.value)}
           />
-          <button>
+          <button type="submit">
             <IoCheckmark className="icon" />
           </button>
-          <IoCloseOutline className="icon" onClick={() => setEdit(false)} />
+          <button type="reset">
+            <IoCloseOutline className="icon" onClick={() => setEdit(false)} />
+          </button>
         </form>
       ) : (
-        <>
+        <div className="group">
           <span className="" onClick={handleImage}>
             {value === undefined || value === "" ? "No Name" : value}
           </span>
           <CiEdit
-            className="icon hidden group-hover:inline"
+            className="icon invisible group-hover:visible"
             onClick={() => setEdit(true)}
           />
           <IoCloseOutline
-            className="icon hidden group-hover:inline"
+            className="icon invisible group-hover:visible"
             onClick={() => handleRemove()}
           />
-        </>
+        </div>
       )}
     </div>
   );

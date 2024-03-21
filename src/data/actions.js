@@ -15,6 +15,12 @@ export const ACTIONS = {
   SIGNIN: "SIGNIN",
   SIGNUP: "SIGNUP",
   ADMIN_ORDER_GET: "ADMIN_ORDER_GET",
+  ADMIN_USERS_GETALL: "ADMIN_USERS_GETALL",
+  ADMIN_USERS_UPDATEROLES: "ADMIN_USERS_UPDATEROLES",
+  ADMIN_USERS_RESETPASSWORD: "ADMIN_USERS_RESETPASSWORD",
+  USER_GET_SETTINGS: "USER_GET_SETTINGS",
+  USER_EDIT_NAME: "USER_EDIT_NAME",
+  USER_EDIT_EMAIL: "USER_EDIT_EMAIL",
 };
 
 export const SERVER = {
@@ -35,12 +41,18 @@ export const SERVER = {
   USER_SIGNIN: "/user/auth",
   USER_SIGNUP: "/user/register",
   USER_SIGNOUT: "/user/logout",
+  USER_GET_SETTINGS: "/user/settings",
+  USER_EDIT_SETTINGS: "/user/settings",
+  // TODO: REMOVE
   GET_USER: "/user/admin",
   GET_USER_SETTINGS: "/user/settings",
   USER_EDIT_SETTINGS: "/user/settings",
   USER_PWD: "/user/pwd",
   ADMIN_CART_GET: "/cart/getAll",
   ADMIN_ORDER_GET: "/order/getall",
+  ADMIN_USERS_GETALL: "/admin/users/getall",
+  ADMIN_USERS_UPDATEROLES: "/admin/users/updateRoles",
+  ADMIN_USERS_RESETPASSWORD: "/admin/users/resetPassword",
 };
 
 export const PRODUCT = {
@@ -69,6 +81,8 @@ export const PRODUCT = {
   IMAGES_NAMES_ADD: "IMAGES_NAMES_ADD",
   IMAGES_NAMES_EDIT: "IMAGES_NAMES_EDIT",
   IMAGES_NAMES_REMOVE: "IMAGES_NAMES_REMOVE",
+  IMAGES_URL_SET: "IMAGES_URL_SET",
+  IMAGES_URL_EDIT: "IMAGES_URL_EDIT",
 
   ARRAY_ADD: "ARRAY_ADD",
   ARRAY_REMOVE: "ARRAY_REMOVE",

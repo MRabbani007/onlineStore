@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DropDownOptions from "../../components/DropDownOptions";
 import { propertyOptions } from "../../data/departments";
 import useProduct from "../../hooks/useProduct";
@@ -23,25 +23,29 @@ const CardAddProperty = () => {
   };
 
   return (
-    <div className="flex gap-4">
+    <div className="flex items-stretch gap-4">
       <DropDownOptions
-        title="Properties"
+        title="Add New Property"
         options={propertyOptions}
         selectedValue={propDropDown}
         handleSelected={handleSelectedProperty}
       />
       {propDropDown === "other" && (
-        <input
-          name="property-input"
-          type="text"
-          placeholder="Property Name"
-          value={newPropertyInput}
-          onChange={(e) => setNewPropertyInput(e.target.value)}
-          className=""
-        />
+        <div className="field">
+          <label htmlFor="property_input">New Property</label>
+          <input
+            id="property_input"
+            name="property_input"
+            type="text"
+            placeholder="Property Name"
+            value={newPropertyInput}
+            onChange={(e) => setNewPropertyInput(e.target.value)}
+            className="field__input"
+          />
+        </div>
       )}
       <button className="btn btn-green" onClick={handleAddProperty}>
-        New Property
+        Add Property
       </button>
     </div>
   );

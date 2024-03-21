@@ -1,0 +1,13 @@
+:root {
+  --color-gray: #737888;
+  --color-lighter-gray: #e3e5ed;
+  --color-light-gray: #f7f7fa;
+}
+
+.shipping-form {
+  display: grid;
+  grid-gap: 1rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}

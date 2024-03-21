@@ -79,9 +79,12 @@ const SignIn = () => {
   };
 
   return (
-    <main className=" border-2 border-red-500">
-      <section>
-        <h1 className="p-3">Sign In</h1>
+    <main className="flex flex-col items-center justify-center w-full">
+      <section className={success ? "visible h-fit" : " invisible h-0"}>
+        <p>You are now logged in!</p>
+        <Link to="/">Go to Home Page</Link>
+      </section>
+      <section className={!success ? "visible h-fit w-full" : " invisible h-0"}>
         <p
           ref={errRef}
           className={errMsg ? "errmsg" : "offscreen"}
@@ -89,39 +92,44 @@ const SignIn = () => {
         >
           {errMsg}
         </p>
-      </section>
-      {success ? (
-        <section className="text-slate-950">
-          <p>You are now logged in!</p>
-          <Link to="/">Go to Home Page</Link>
-        </section>
-      ) : (
-        <form className="flex flex-col p-5 w-[400px]" onSubmit={handleSubmit}>
-          <FaRegUserCircle className="text-[80px] mx-auto" />
-          <label htmlFor="username" className="my-2">
-            Username
-          </label>
-          <input
-            type="text"
-            id="username"
-            placeholder="UserName"
-            ref={userRef}
-            autoComplete="off"
-            {...userAttribs}
-            required
-          />
-          <label htmlFor="password" className="my-2">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            onChange={(e) => setPwd(e.target.value)}
-            value={pwd}
-            required
-          />
-          <button type="submit" className="btn btn-yellow mx-auto my-2">
+        <form
+          className="form_auth rounded-lg shadow-lg shadow-zinc-600"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex items-center my-4 relative">
+            <h1>Sign In</h1>
+            <FaRegUserCircle className="text-6xl absolute left-[50%] translate-x-[-50%]" />
+          </div>
+          {/* username */}
+          <div className="field relative">
+            <label htmlFor="username" className="field__label">
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              placeholder="UserName"
+              ref={userRef}
+              autoComplete="off"
+              {...userAttribs}
+              required
+            />
+          </div>
+          {/* pwd */}
+          <div className="field relative">
+            <label htmlFor="password" className="field__label">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-yellow mx-auto">
             Signin
           </button>
           <div className="persistCheck">
@@ -135,14 +143,14 @@ const SignIn = () => {
               Trust This Device
             </label>
           </div>
+          <div className="flex items-center gap-2">
+            <p>Create new account</p>
+            <Link to="/register" className="btn btn-blue">
+              Signup
+            </Link>
+          </div>
         </form>
-      )}
-      <p className="my-2 mx-3">
-        Create account
-        <Link to="/register" className="btn btn-blue ml-2">
-          Signup
-        </Link>
-      </p>
+      </section>
     </main>
   );
 };

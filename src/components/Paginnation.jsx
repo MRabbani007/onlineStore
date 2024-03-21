@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import { useEffect, useState } from "react";
 
 const Paginnation = ({ pages, activePage, handlePage }) => {
   const [pagesArray, setPagesArray] = useState([1]);

@@ -55,7 +55,7 @@ const ChangePassword = () => {
             },
           },
         });
-        console.log(response.data);
+
         if (response?.data?.status === "success") {
           //clear state and controlled inputs
           //need value attrib on inputs for this

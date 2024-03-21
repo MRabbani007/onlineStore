@@ -2,11 +2,12 @@ import { useContext, useEffect, useState } from "react";
 // Imported Components
 import CartProductCard from "../components/CartProductCard";
 // Imported Data
-import { fetchCart, fetchOrder } from "../data/productServerFunctions";
 import { GlobalContext } from "../context/GlobalState";
 
 const Cart = () => {
   const { cart, handlePlaceOrder } = useContext(GlobalContext);
+
+  console.log(cart);
 
   // Store Cart Total Price
   const [totalPrice, setTotalPrice] = useState(0);

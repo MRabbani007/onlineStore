@@ -1,0 +1,137 @@
+.form__product {
+  display: grid;
+  gap: 1rem;
+  width: min(1000px, 100%) ;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form_auth {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: .5rem 1.25rem;
+  width: 400px;
+  margin: 0 auto;
+  border-radius: .5rem;
+  background-color: #1111110e;
+  /* border: 3px solid rgba(168, 168, 168, 0.911); */
+}
+
+.form_auth input {
+  background-color: transparent;
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--color-lighter-gray);
+  padding: .5rem;
+  border-radius: .25rem;
+}
+
+.field__label {
+  color: rgb(94, 94, 94);
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  /* text-transform: uppercase; */
+  /* margin-bottom: 0.25rem */
+}
+
+.field__input {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+}
+
+.field:focus-within {
+  border-color: #c29f01;
+}
+
+.fields {
+  display: grid;
+  grid-gap: 1rem;
+}
+
+.fields--2, .field__group2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
+}
+
+.fields--3, .field__group3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: .5rem;
+}
+
+.fields--3, .field__group4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: .5rem;
+}
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #5c5c5cb6;
+  color: #fff;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 400px;
+  min-width: 250px;
+}
+
+.instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.hide {
+  display: none;
+}
+
+.valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.errmsg {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.line {
+  display: inline-block;
+}
+
+.otpInput {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  text-align: center;
+  font-size: 1.2em;
+}

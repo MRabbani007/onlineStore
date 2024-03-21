@@ -1,13 +1,9 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import { GlobalContext } from "./GlobalState";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { productReducer } from "./ProductReducer";
-import { PRODUCT } from "../data/actions";
+import { ACTIONS, PRODUCT, SERVER } from "../data/actions";
+import { useNavigate } from "react-router-dom";
+import { axiosPrivate } from "../api/axios";
+import useAuth from "../hooks/useAuth";
 
 const ProductContext = createContext({});
 
@@ -43,41 +39,107 @@ const initialState = {
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
 
-  // get edit product from global provider
-  const {
-    loadingEditProduct,
-    editProduct,
-    handleProductUpdate,
-    handleProductCreate,
-    handleProductRemove,
-  } = useContext(GlobalContext);
+  const { auth } = useAuth();
+
+  const navigate = useNavigate();
+
+  // Create Product Page
+  const [loading, setLoading] = useState(true);
+  const [toggleProduct, setToggleProduct] = useState(false);
+
+  // Update product in DB
+  const handleProductUpdate = async () => {
+    let response = await axiosPrivate.post(SERVER.PRODUCTS_UPDATE, {
+      roles: auth?.roles,
+      action: {
+        type: ACTIONS.PRODUCTS_UPDATE,
+        payload: { userName: auth?.user, product: state },
+      },
+    });
+    if (response?.data) {
+      alert("Product Saved");
+      setToggleProduct(!toggleProduct);
+      // navigate("store");
+    }
+  };
+
+  // Create new product in DB
+  const handleProductCreate = async () => {
+    console.log(state);
+    let response = await axiosPrivate.post(SERVER.PRODUCTS_CREATE, {
+      roles: auth?.roles,
+      action: {
+        type: ACTIONS.PRODUCTS_CREATE,
+        payload: { userName: auth?.user, product: state },
+      },
+    });
+    if (response?.data) {
+      alert("Product Created");
+      setToggleProduct(!toggleProduct);
+    }
+  };
+
+  // Delete Product from DB
+  const handleProductRemove = async (productID) => {
+    let response = await axiosPrivate.post(SERVER.PRODUCTS_CREATE, {
+      roles: auth?.roles,
+      action: {
+        type: ACTIONS.PRODUCTS_CREATE,
+        payload: { userName: auth?.user, productID },
+      },
+    });
+    if (response?.data?.status === "success") {
+      dispatch({ type: PRODUCT.LOAD_PRODUCT, payload: initialState });
+    }
+  };
+
+  const handleOpenEditProduct = async (productID) => {
+    handleProductGet(productID);
+    navigate("/createProduct", { state: { productID } });
+  };
+
+  const handleProductGet = async (productID) => {
+    try {
+      setLoading(true);
+      let response = await axiosPrivate.post(SERVER.PRODUCTS_GET, {
+        roles: auth?.roles,
+        action: {
+          type: ACTIONS.PRODUCTS_GET,
+          payload: { userName: auth?.user, productID },
+        },
+      });
+      if (response?.data) {
+        dispatch({ type: PRODUCT.LOAD_PRODUCT, payload: response.data });
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // display images (left block)
   const [productImages, setProductImages] = useState(["", "", ""]);
   const [mainImage, setMainImage] = useState("");
 
   useEffect(() => {
-    if (!loadingEditProduct) {
-      console.log(editProduct);
-      dispatch({ type: PRODUCT.LOAD_PRODUCT, payload: editProduct });
+    if (!loading) {
       loadProductProperties();
-      setProductImages(editProduct.images[0]);
-      setMainImage(editProduct.images[0][0]);
+      setProductImages(state.images[0]);
+      setMainImage(state.images[0][0]);
     }
-  }, [loadingEditProduct, editProduct]);
+  }, [loading]);
 
   // Load Product properties & values
   const loadProductProperties = () => {
-    if (!!editProduct) {
-      if (!editProduct?.imagesBasedOn) {
+    if (!loading && !!state) {
+      if (!state?.imagesBasedOn) {
         dispatch({ type: PRODUCT.IMAGE_REFERENCE, payload: "" });
       }
-      if (!editProduct?.imagesNames) {
-        // || editProduct.imagesNames.length !== editProduct?.images?.length
-        let temp = Array(editProduct.images.length).fill("");
+      if (!state?.imagesNames) {
+        let temp = Array(state.images.length).fill("");
         dispatch({ type: PRODUCT.IMAGES_NAMES_SET, payload: temp });
       }
-      if (!editProduct?.images) {
+      if (!state?.images) {
         dispatch({ type: PRODUCT.IMAGES_SET });
       }
     }
@@ -101,6 +163,7 @@ export const ProductProvider = ({ children }) => {
         type: PRODUCT.LOAD_PRODUCT,
         payload: JSON.parse(temp),
       });
+      setToggleProduct(!toggleProduct);
     }
   };
 
@@ -110,20 +173,17 @@ export const ProductProvider = ({ children }) => {
     alert("Product Saved to localstorage");
   };
 
-  // Create new product in DB
-  const handleCreateProduct = () => {
-    handleProductCreate(state);
-  };
-
-  // Update product in DB
-  const handeApplyEdit = async () => {
-    handleProductUpdate(state);
+  const clearProduct = () => {
+    dispatch({ type: PRODUCT.LOAD_PRODUCT, payload: initialState });
+    setToggleProduct(!toggleProduct);
   };
 
   return (
     <ProductContext.Provider
       value={{
         product: state,
+        loading: loading,
+        toggleProduct,
         dispatch,
 
         productImages,
@@ -131,10 +191,13 @@ export const ProductProvider = ({ children }) => {
         mainImage,
         handleMainImage,
 
-        handleCreateProduct,
-        handeApplyEdit,
+        handleOpenEditProduct,
+        handleProductCreate,
+        handleProductUpdate,
+        handleProductRemove,
         loadProduct,
         saveProduct,
+        clearProduct,
       }}
     >
       {children}

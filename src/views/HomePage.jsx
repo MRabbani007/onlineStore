@@ -11,7 +11,7 @@ const HomePage = () => {
       className={`pt-[15%] pb-[80px] text-slate-950 flex flex-wrap justify-center gap-5 relative`}
     >
       <div
-        className={`md:h-[25%] h-[30vh] absolute top-[-20px] left-0 right-0 bg-[url("/images/background/background-1.jpg")] bg-no-repeat bg-cover bg-origin-content z-0`}
+        className={`md:h-[25%] h-[30vh] absolute top-[-70px] left-0 right-0 bg-[url("/images/background/background-1.jpg")] bg-no-repeat bg-cover bg-origin-content z-0`}
       ></div>
       {/* <Brands category={"Beauty & Personal Care"} /> */}
       {cardData1.map((item, index) => {

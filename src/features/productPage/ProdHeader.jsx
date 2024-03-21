@@ -13,12 +13,12 @@ const ProdHeader = () => {
   }, [product?.rating?.stars]);
 
   return (
-    <section className="bg-slate-200 p-3">
-      <div className="font-semibold text-2xl">{product?.name}</div>
+    <section className="bg-slate-200 rounded-t-lg p-3">
+      <div className="font-semibold text-xl">{product?.name}</div>
       <div>
         Visit the{" "}
         <Link to="/supplier" state={{ supplier: product.supplier }}>
-          {product?.supplier.includes("Store")
+          {product?.supplier?.includes("Store")
             ? product?.supplier
             : product?.supplier + " Store"}
         </Link>

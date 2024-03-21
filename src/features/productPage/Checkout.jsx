@@ -16,33 +16,37 @@ const Checkout = ({ handleSubmit }) => {
   }, [product?.priceCents]);
 
   return (
-    <div className="md:w-[20%] w-full h-fit border-[1px]">
-      <h2 className="text-xl text-center bg-slate-300 py-1">Checkout</h2>
-      <div>
-        <span className="text-2xl">{"$" + priceWhole}</span>
-        <span className="align-super">{priceFraction}</span>
-      </div>
-      <p>Ships to Kazakhstan</p>
-      <p>No Import Fees &</p>
-      <p>
-        $
-        {!!product?.priceCents &&
-          (Math.floor(product.priceCents / 100) * 0.1).toFixed(2)}{" "}
-        Shipping
-      </p>
-      <div className="flex flex-col justify-center items-center">
-        <button
-          onClick={handleSubmit}
-          className="bg-yellow-400 rounded-md py-1 px-3 my-2 w-[150px]"
-        >
-          Add To Cart
-        </button>
-        <Link
-          to="/cart"
-          className="bg-yellow-400 rounded-md py-1 px-3 my-2 w-[150px] text-blue-500"
-        >
-          Checkout
-        </Link>
+    <div className="md:w-[20%] w-full h-fit shadow-lg rounded-lg">
+      <h2 className="text-xl text-center bg-slate-300 rounded-t-lg py-1">
+        Checkout
+      </h2>
+      <div className="p-2">
+        <div>
+          <span className="text-2xl">{"$" + priceWhole}</span>
+          <span className="align-super">{priceFraction}</span>
+        </div>
+        <p>Ships to Kazakhstan</p>
+        <p>No Import Fees &</p>
+        <p>
+          $
+          {!!product?.priceCents &&
+            (Math.floor(product.priceCents / 100) * 0.1).toFixed(2)}{" "}
+          Shipping
+        </p>
+        <div className="flex flex-col justify-center items-center rounded-b-lg">
+          <button
+            onClick={handleSubmit}
+            className="bg-yellow-400 rounded-md py-1 px-3 my-2 w-[150px]"
+          >
+            Add To Cart
+          </button>
+          <Link
+            to="/cart"
+            className="bg-yellow-400 rounded-md py-1 px-3 w-[150px] text-blue-500"
+          >
+            Checkout
+          </Link>
+        </div>
       </div>
     </div>
   );

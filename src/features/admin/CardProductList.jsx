@@ -1,8 +1,7 @@
-import React from "react";
-import useGlobal from "../../hooks/useGlobal";
+import useProduct from "../../hooks/useProduct";
 
 const CardProductList = ({ product, idx, expand }) => {
-  const { handleOpenEditProduct } = useGlobal();
+  const { handleOpenEditProduct } = useProduct();
 
   return (
     <tr

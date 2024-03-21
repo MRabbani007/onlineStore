@@ -9,18 +9,18 @@ const CardHomePage = ({ cardInfo }) => {
 
   return (
     <div
-      className="w-[300px] h-auto bg-slate-100 z-10"
+      className="w-[300px] h-auto  z-10 rounded-lg shadow-xl shadow-yellow-300"
       onClick={() => {
         handleSearchSubmit("", cardInfo.value);
       }}
     >
-      <h2 className="text-xl text-center font-semibold text-slate-950 bg-slate-300 px-3 py-1">
+      <h2 className="text-xl text-center font-semibold rounded-t-lg text-zinc-900 bg-zinc-400 px-3 py-1">
         {cardInfo.title}
       </h2>
       <img
         src={IMAGE_URL_DEALS + cardInfo.image}
         alt=""
-        className="w-auto h-[250px] mx-auto"
+        className="w-auto h-[250px] mx-auto rounded-b-lg"
       />
     </div>
   );

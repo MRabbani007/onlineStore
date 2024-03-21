@@ -22,7 +22,7 @@ const SectionProductProperties = () => {
         Properties
       </h2>
       {view && (
-        <div>
+        <div className="flex flex-col gap-2 p-2">
           <CardAddProperty />
           {Array.isArray(product?.properties) &&
             product?.properties.map((property, index) => {

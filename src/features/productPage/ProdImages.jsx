@@ -3,18 +3,18 @@ import { GlobalContext } from "../../context/GlobalState";
 import { IMAGE_URL } from "../../data/utils";
 
 const ProdImages = () => {
-  const { productImages, mainImage, handleMainImage } =
+  const { product, productImages, mainImage, handleMainImage } =
     useContext(GlobalContext);
 
   return (
-    <div className="md:w-[30%] w-full flex">
-      <div className="mr-4 flex flex-col gap-2">
+    <div className="sm:w-[30%] w-full flex flex-wrap sm:flex-nowrap">
+      <div className="flex mx-0 sm:mr-4 sm:flex-col flex-row flex-wrap gap-2">
         {Array.isArray(productImages) &&
           productImages.map((image, index) => {
             return (
               <img
                 key={index}
-                src={IMAGE_URL + image}
+                src={IMAGE_URL + (product?.imagesURL || "") + image}
                 alt="image"
                 className="image-thumb-sq"
                 onMouseOver={() => handleMainImage(index)}
@@ -22,9 +22,12 @@ const ProdImages = () => {
             );
           })}
       </div>
-      <div className="w-[300px]">
-        {Array.isArray(productImages) && (
-          <img src={IMAGE_URL + mainImage} alt="image" />
+      <div className="sm:w-[300px] w-full">
+        {!!mainImage && (
+          <img
+            src={IMAGE_URL + (product?.imagesURL || "") + mainImage}
+            alt="image"
+          />
         )}
       </div>
     </div>

@@ -8,16 +8,16 @@ const SectionDisplayImages = () => {
   const [expandMain, setExpandMain] = useState(false);
 
   return (
-    <div className="flex gap-3">
+    <div className="flex flex-wrap gap-3">
       {/* Image Thumbs */}
-      <div className="flex md:flex-col gap-2">
+      <div className="flex sm:flex-col gap-2 mx-auto">
         {Array.isArray(productImages) &&
           productImages.map((image, index) => {
             if (image === "") {
               return (
                 <div
                   key={index}
-                  className="w-[60px] h-[60px] p-2 my-1 border-[1px] rounded-md"
+                  className="w-[60px] h-[60px] p-2 my-1 border-[2px] border-slate-400 hover:border-yellow-400 duraion-200 rounded-md"
                 >
                   + add image
                 </div>
@@ -38,8 +38,14 @@ const SectionDisplayImages = () => {
           })}
       </div>
       {/* Main Image */}
-      <div className={expandMain ? "" : " hidden" + " max-w-[300px]"}>
-        {!!mainImage && <img src={IMAGE_URL + mainImage} alt="" />}
+      <div className={(expandMain ? "" : " hidden ") + " w-[300px] mx-auto"}>
+        {!!mainImage && (
+          <img
+            src={IMAGE_URL + mainImage}
+            alt=""
+            className="object-contain max-w-[300px] h-[400px] mx-auto"
+          />
+        )}
       </div>
     </div>
   );

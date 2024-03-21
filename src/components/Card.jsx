@@ -9,9 +9,11 @@ import { IMAGE_URL } from "../data/utils";
 // Imported Icons
 import { IoStar, IoStarHalf, IoStarOutline } from "react-icons/io5";
 import { CiEdit } from "react-icons/ci";
+import useProduct from "../hooks/useProduct";
 
 const Card = ({ product }) => {
-  const { handleOpenProduct, handleOpenEditProduct } = useGlobal();
+  const { handleOpenProduct } = useGlobal();
+  const { handleOpenEditProduct } = useProduct();
   const { role } = useAuth();
 
   const [productImage, setProductImage] = useState("");
@@ -31,13 +33,13 @@ const Card = ({ product }) => {
   }, []);
 
   return (
-    <div className="sm:w-[250px] w-full h-[300px] text-slate-950 p-2 overflow-hidden text-ellipsis">
+    <div className="sm:w-[250px] w-full h-[300px] duration-200 shadow-md shadow-zinc-800 rounded-lg text-slate-950 p-2 overflow-hidden text-ellipsis z-1">
       <div className="w-full h-[70%]">
         <div className="flex w-full h-full justify-center relative">
           <img
-            src={IMAGE_URL + productImage}
+            src={IMAGE_URL + (product?.imagesURL || "") + productImage}
             alt="image"
-            className="object-fill image-lg"
+            className="object-fill image-lg cursor-pointer"
             onClick={() => handleOpenProduct(product?.id)}
           />
           {role === "Admin" && (
@@ -50,7 +52,7 @@ const Card = ({ product }) => {
           )}
         </div>
         {/* Price & Rating */}
-        <div className="flex justify-between items-center px-4 py-2">
+        <div className="flex justify-between items-center">
           <div className="">
             <span className="text-2xl">${priceWhole}</span>
             <span className="align-super">{priceFraction}</span>
@@ -68,7 +70,7 @@ const Card = ({ product }) => {
           </div>
         </div>
         {/* Item Name */}
-        <div className="overflow-hidden text-ellipsis px-2">
+        <div className="overflow-hidden text-ellipsis whitespace-nowrap text-[1rem]">
           {product?.name}
         </div>
       </div>

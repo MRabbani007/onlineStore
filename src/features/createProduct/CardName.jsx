@@ -8,13 +8,14 @@ const CardName = () => {
   const { product, dispatch } = useProduct();
 
   const [edit, setEdit] = useState(false);
-  const [value, setValue] = useState(product?.name);
+  const [value, setValue] = useState(product?.name || "");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch({ type: PRODUCT.NAME, payload: value });
     setEdit(false);
   };
+
   useEffect(() => {
     setValue(product?.name);
   }, [product?.name]);

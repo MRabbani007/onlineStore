@@ -18,36 +18,34 @@ const CreateProductPage = () => {
   const location = useLocation();
 
   return (
-    <ProductProvider>
-      <div className="">
-        {/* Page Header */}
-        <SectionEditPageHeader />
-        <section className="flex lg:flex-nowrap flex-wrap gap-5 text-slate-950">
-          {/* Left Column: images */}
-          <SectionDisplayImages />
-          {/* Middle Column: Product info */}
-          <div className="md:flex-1 w-full border-[1px]">
-            {/* Product Header */}
-            <SectionHeader />
-            {/* Price & Shipping */}
-            <div className="flex justify-between px-2 py-1">
-              <SectionPriceShipping />
-              <CardCategory />
-            </div>
-            {/* Product Body */}
-            <div className="">
-              <h2 className="text-2xl font-semibold px-2">Product Details</h2>
-              {/* Properties */}
-              <SectionProductProperties />
-              {/* Images */}
-              <SectionImages />
-              {/* Details */}
-              <SectionProductDetails />
-            </div>
+    <div className="">
+      {/* Page Header */}
+      <SectionEditPageHeader />
+      <section className="flex lg:flex-nowrap flex-wrap gap-5 text-slate-950">
+        {/* Left Column: images */}
+        <SectionDisplayImages />
+        {/* Middle Column: Product info */}
+        <div className="md:flex-1 w-full border-[1px]">
+          {/* Product Header */}
+          <SectionHeader />
+          {/* Price & Shipping */}
+          <div className="flex justify-between px-2 py-1">
+            <SectionPriceShipping />
+            <CardCategory />
           </div>
-        </section>
-      </div>
-    </ProductProvider>
+          {/* Product Body */}
+          <div className="">
+            <h2 className="text-2xl font-semibold px-2">Product Details</h2>
+            {/* Properties */}
+            <SectionProductProperties />
+            {/* Images */}
+            <SectionImages />
+            {/* Details */}
+            <SectionProductDetails />
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

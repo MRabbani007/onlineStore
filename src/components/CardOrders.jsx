@@ -5,13 +5,15 @@ import { IMAGE_URL } from "../data/utils";
 import buyAgainImg from "../assets/icons/buy-again.png";
 import { IoCloseOutline } from "react-icons/io5";
 import { GlobalContext } from "../context/GlobalState";
+import { Link } from "react-router-dom";
+import CardRatingAndReview from "../features/trackOrder/CardRatingAndReview";
 
 const CardOrders = ({ order }) => {
   const { handleOpenProduct } = useContext(GlobalContext);
 
   const getImage = (product) => {
     let i = product.property.findIndex((prop) => prop === "image");
-    if (i > 0) {
+    if (i >= 0) {
       return product.value[i].split(" ")[1] || product.value[i];
     }
   };
@@ -37,17 +39,20 @@ const CardOrders = ({ order }) => {
             <IoCloseOutline className="icon-md" />
           </div>
         </div>
-        <div className="flex lg:flex-row flex-col justify-between bg-slate-200 px-3 py-1"></div>
         {/* Items */}
         {order?.products?.length === 0
           ? null
           : order.products.map((product, idx) => {
               return (
-                <div key={idx} className="flex flex-wrap p-3">
+                <div key={idx} className="flex flex-wrap p-3 gap-3">
                   {/* Product Image */}
                   <div className="w-[20%] max-w-[150px] max-h-[200px] overflow-hidden">
                     <img
-                      src={IMAGE_URL + getImage(product)}
+                      src={
+                        IMAGE_URL +
+                        (product?.imagesURL || "") +
+                        getImage(product)
+                      }
                       alt=""
                       className="object-contain"
                     />
@@ -72,11 +77,20 @@ const CardOrders = ({ order }) => {
                         Buy it again
                       </button>
                     </div>
-                    <div className="md:w-[15%]">
-                      <button className="px-2 py-1 border-[1px] border-slate-400 mx-auto">
-                        Track Package
-                      </button>
-                    </div>
+                  </div>
+                  {/* Track Package */}
+                  <div className="md:w-[15%] min-w-fit">
+                    <Link
+                      to="/trackOrder"
+                      state={{ orderID: order.orderID }}
+                      className="px-2 py-1 text-nowrap border-[1px] border-slate-400 mx-auto"
+                    >
+                      Track Package
+                    </Link>
+                    <CardRatingAndReview
+                      orderID={order.orderID}
+                      prodID={product.id}
+                    />
                   </div>
                 </div>
               );

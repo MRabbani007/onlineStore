@@ -7,7 +7,7 @@ export const productReducer = (state, { type, payload }) => {
         return { ...payload };
       }
       case PRODUCT.NAME: {
-        return { ...state, name: payload };
+        return { ...state, name: payload.value };
       }
       case PRODUCT.CATEGORY: {
         return { ...state, category: payload };
@@ -16,7 +16,7 @@ export const productReducer = (state, { type, payload }) => {
         return { ...state, priceCents: payload };
       }
       case PRODUCT.SUPPLIER: {
-        return { ...state, supplier: payload };
+        return { ...state, supplier: payload.value };
       }
       case PRODUCT.RATINGS_STARS: {
         const rating = { count: state.rating.count, stars: payload };
@@ -54,11 +54,18 @@ export const productReducer = (state, { type, payload }) => {
         return { ...state };
       }
       case PRODUCT.IMAGE_REFERENCE: {
-        return { ...state, imagesBasedOn: payload };
+        return { ...state, imagesBasedOn: payload.value };
+      }
+      case PRODUCT.IMAGES_URL_SET: {
+        return { ...state, imagesURL: payload.value };
+      }
+      case PRODUCT.IMAGES_URL_EDIT: {
+        console.log({ ...state, imagesURL: payload.value });
+        return { ...state, imagesURL: payload.value };
       }
       case PRODUCT.ARRAY_ADD: {
         state.images.push([]);
-        state.imagesNames.push(payload);
+        state.imagesNames.push(payload.value);
         console.log(state.images, state.imagesNames);
         return { ...state };
       }
@@ -72,7 +79,7 @@ export const productReducer = (state, { type, payload }) => {
         return { ...state };
       }
       case PRODUCT.ABOUT_ADD: {
-        state.about.push(payload);
+        state.about.push(payload.value);
         return { ...state };
       }
       case PRODUCT.ABOUT_REMOVE: {
@@ -112,7 +119,7 @@ export const productReducer = (state, { type, payload }) => {
         return { ...state };
       }
       case PRODUCT.VALUES_ADD: {
-        state.values[payload.data].push(payload.value);
+        state.values[payload.propIndex].push(payload.value);
         return { ...state };
       }
       case PRODUCT.VALUES_REMOVE: {

@@ -5,8 +5,13 @@ import { ACTIONS, SERVER } from "../data/actions";
 
 // Initial state
 const initialState = {
-  userName: "",
-  name: "",
+  id: "",
+  username: "",
+  firstname: "",
+  lastname: "",
+  roles: [],
+  createDate: "",
+  lastSignin: "",
   email: "",
 };
 
@@ -20,24 +25,25 @@ export const UserProvider = ({ children }) => {
   const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
 
-  const handleEditName = async (name) => {
+  const handleEditName = async (firstname = "", lastname = "") => {
     try {
       let response = await axiosPrivate.put(SERVER.USER_EDIT_SETTINGS, {
         roles: auth?.roles,
         action: {
           type: ACTIONS.USER_EDIT_NAME,
-          payload: { username: auth?.user, name },
+          payload: { username: auth?.user, firstname, lastname },
         },
       });
       if (response.data.status === "success") {
+        alert(firstname + lastname);
         setUser((prev) => {
-          return { ...prev, name };
+          return { ...prev, firstname, lastname };
         });
       }
     } catch (error) {}
   };
 
-  const handleEditEmail = async (email) => {
+  const handleEditEmail = async (email = "") => {
     try {
       let response = await axiosPrivate.put(SERVER.USER_EDIT_SETTINGS, {
         roles: auth?.roles,
@@ -51,38 +57,38 @@ export const UserProvider = ({ children }) => {
           return { ...prev, email };
         });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log("Error: Edit Email");
+    }
+  };
+
+  const handleGetUserSettings = async () => {
+    let response = await axiosPrivate.post(SERVER.USER_GET_SETTINGS, {
+      roles: auth?.roles,
+      action: {
+        type: ACTIONS.USER_GET_SETTINGS,
+        payload: { username: auth?.user },
+      },
+    });
+    if (response?.data) {
+      setUser(response.data);
+    }
   };
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const response = await axiosPrivate.post(SERVER.GET_USER_SETTINGS, {
-        username: auth?.user,
-        roles: auth?.roles,
-      });
-      const data = response?.data;
-      setUser((prev) => {
-        let name = "user";
-        let email = "";
-        if (response?.data?.name !== "") {
-          name = data.name;
-        }
-        if (response?.data?.email !== "") {
-          email = data.email;
-        }
-        return { ...prev, name, email };
-      });
-    };
     if (auth?.user && auth?.roles) {
-      fetchUser();
+      handleGetUserSettings();
     }
   }, [auth?.user]);
 
   return (
     <UserContext.Provider
       value={{
-        name: user?.name || "",
+        firstname: user?.firstname || "",
+        lastname: user?.lastname || "",
         email: user?.email || "",
+        handleEditName,
+        handleEditEmail,
       }}
     >
       {children}

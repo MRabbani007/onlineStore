@@ -1,19 +1,13 @@
 import CardImageName from "./CardImageName";
 import CardImage from "./CardImage";
-import CardAddImage from "./CardAddImage";
-import useProduct from "../../hooks/useProduct";
+import CardAddItem from "./CardAddItem";
+import { PRODUCT } from "../../data/actions";
 
-const CardImageArray = ({ imageArray, imageName, arrayIndex }) => {
-  const { dispatch } = useProduct();
-
+const CardImageArray = ({ imageArray, imageName, arrayIndex, imagesURL }) => {
   return (
     <div>
-      <div className="flex flex-wrap items-center my-3 gap-3">
-        <CardImageName
-          imageName={imageName}
-          arrayIndex={arrayIndex}
-          dispatch={dispatch}
-        />
+      <div className="flex flex-wrap items-center gap-3 border-2 rounded-md p-2">
+        <CardImageName imageName={imageName} arrayIndex={arrayIndex} />
         {!!imageArray &&
           imageArray.map((image, index) => {
             return (
@@ -22,11 +16,17 @@ const CardImageArray = ({ imageArray, imageName, arrayIndex }) => {
                 prodImage={image}
                 imageIndex={index}
                 arrayIndex={arrayIndex}
-                dispatch={dispatch}
+                imagesURL={imagesURL}
               />
             );
           })}
-        <CardAddImage arrayIndex={arrayIndex} dispatch={dispatch} />
+        <CardAddItem
+          type={PRODUCT.IMAGES_ADD}
+          data={{ arrayIndex }}
+          placeholder="Add Image"
+          title="Add Image"
+          showFormLabel={false}
+        />
       </div>
     </div>
   );

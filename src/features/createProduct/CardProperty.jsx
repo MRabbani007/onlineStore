@@ -21,9 +21,9 @@ const CardProperty = ({ property, values, propIndex }) => {
   };
 
   return (
-    <div>
+    <div className="border-2 rounded-md p-2">
       {/* Property Name */}
-      <h3 className="text-xl font-semibold my-2 ml-2 edit-item">
+      <h3 className="text-xl font-normal edit-item">
         {property}
         <FaTimes
           onClick={handlePropertyRemove}
@@ -31,23 +31,27 @@ const CardProperty = ({ property, values, propIndex }) => {
         />
       </h3>
       {/* Values */}
-      <div>
+      <div className="flex flex-wrap items-center gap-2">
         {Array.isArray(values) &&
           values.map((value, idx) => {
             return (
               <div
                 key={idx}
-                className="inline-block mx-2 my-1 border-[1px] p-1 edit-cont"
+                className="inline-block border-[1px] rounded-md py-2 px-4 edit-cont relative text-center"
               >
                 <span>{value}</span>
                 <FaTimes
                   onClick={() => handleValueRemove(idx)}
-                  className="btn-remove invisible"
+                  className="btn-remove invisible absolute top-0 right-0"
                 />
               </div>
             );
           })}
-        <CardAddItem type={PRODUCT.VALUES_ADD} data={propIndex} />
+        <CardAddItem
+          initialValue=""
+          type={PRODUCT.VALUES_ADD}
+          data={{ propIndex }}
+        />
       </div>
     </div>
   );

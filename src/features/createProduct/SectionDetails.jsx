@@ -11,7 +11,7 @@ const SectionDetails = () => {
   };
 
   return (
-    <div>
+    <div className="rounded-md border-2 p-2">
       {/* Product Details */}
       <h2>Details</h2>
       <p>Brand, Material, ItemWeight...</p>

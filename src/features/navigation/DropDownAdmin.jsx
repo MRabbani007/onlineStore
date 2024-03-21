@@ -34,7 +34,7 @@ const DropDownSignin = forwardRef(({ viewMenu }, ref) => {
         tabIndex="-1"
         id="menu-item-0"
         onClick={handleSignOut}
-        className="text-gray-700 block px-4 py-2 text-sm rounded-t-md cursor-pointer hover:bg-slate-300"
+        className="text-gray-700 block px-4 py-2 text-sm rounded-t-md border-b-[1px] cursor-pointer hover:bg-slate-300"
       >
         Signout
       </div>
@@ -52,7 +52,7 @@ const DropDownSignin = forwardRef(({ viewMenu }, ref) => {
         role="menuitem"
         tabIndex="-1"
         id="menu-item-200"
-        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
+        className="text-gray-700 block px-4 py-2 text-sm cursor-pointer hover:bg-slate-300"
       >
         Users
       </Link>
@@ -61,7 +61,7 @@ const DropDownSignin = forwardRef(({ viewMenu }, ref) => {
         role="menuitem"
         tabIndex="-1"
         id="menu-item-200"
-        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
+        className="text-gray-700 block px-4 py-2 text-sm cursor-pointer hover:bg-slate-300"
       >
         Products
       </Link>
@@ -70,7 +70,7 @@ const DropDownSignin = forwardRef(({ viewMenu }, ref) => {
         role="menuitem"
         tabIndex="-1"
         id="menu-item-200"
-        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
+        className="text-gray-700 block px-4 py-2 text-sm cursor-pointer hover:bg-slate-300"
       >
         Orders
       </Link>
@@ -84,6 +84,15 @@ const DropDownSignin = forwardRef(({ viewMenu }, ref) => {
         Carts
       </Link>
       <Link
+        to="/createBulk"
+        role="menuitem"
+        tabIndex="-1"
+        id="menu-item-200"
+        className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
+      >
+        Create Bulk
+      </Link>
+      <Link
         to="/createProduct"
         role="menuitem"
         tabIndex="-1"
@@ -91,36 +100,6 @@ const DropDownSignin = forwardRef(({ viewMenu }, ref) => {
         className="text-gray-700 block px-4 py-2 text-sm border-b-[1px] cursor-pointer hover:bg-slate-300"
       >
         Create Product
-      </Link>
-      <Link
-        to="settings"
-        role="menuitem"
-        tabIndex="-1"
-        id="menu-item-3"
-        className="text-gray-700 block px-4 py-2 text-sm cursor-pointer hover:bg-slate-300"
-      >
-        <img src={kzFlag} alt="" className="inline w-[20px] mr-2" />
-        Kazakhstan
-      </Link>
-      <Link
-        to="settings"
-        role="menuitem"
-        tabIndex="-1"
-        id="menu-item-4"
-        className="text-gray-700 block px-4 py-2 text-sm rounded-b-md cursor-pointer hover:bg-slate-300"
-      >
-        <img src={usFlag} alt="" className="inline w-[20px] mr-2" />
-        EN-US
-      </Link>
-      <Link
-        to="settings"
-        role="menuitem"
-        tabIndex="-1"
-        id="menu-item-4"
-        className="text-gray-700 block px-4 py-2 text-sm rounded-b-md cursor-pointer hover:bg-slate-300"
-      >
-        <FaDollarSign className="inline text-xl mr-2" />
-        US-Dollar
       </Link>
       <Link
         to="settings"

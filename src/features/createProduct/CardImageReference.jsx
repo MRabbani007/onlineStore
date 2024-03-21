@@ -12,28 +12,43 @@ const CardImageReference = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: PRODUCT.IMAGE_REFERENCE, payload: value });
+    dispatch({ type: PRODUCT.IMAGE_REFERENCE, payload: { value } });
     setEdit(false);
   };
-  useEffect(() => {
-    setValue(product?.imagesBasedOn);
-  }, [product?.imagesBasedOn]);
+
+  // useEffect(() => {
+  //   console.log(product.imagesBasedOn);
+  //   setValue(product?.imagesBasedOn);
+  // }, [product?.imagesBasedOn]);
 
   return (
-    <div>
-      <span>Images based on: </span>
+    <div className="field">
+      <span className="field__label">Image Reference</span>
       {edit ? (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex gap-2 w-fit">
           <input
             type="text"
             placeholder="Image Reference"
             value={value}
+            className="field__input"
+            autoFocus
             onChange={(e) => setValue(e.target.value)}
           />
-          <button>
-            <IoCheckmark className="icon" />
+          <button
+            type="submit"
+            className="bg-green-400 hover:bg-green-500 duration-200 rounded-md p-1"
+          >
+            <IoCheckmark className="icon-md" />
           </button>
-          <IoCloseOutline className="icon" onClick={() => setEdit(false)} />
+          <button
+            type="reset"
+            className="bg-red-400 hover:bg-red-500 duration-200 rounded-md p-1"
+          >
+            <IoCloseOutline
+              className="icon-md"
+              onClick={() => setEdit(false)}
+            />
+          </button>
         </form>
       ) : (
         <span className="group">

@@ -1,12 +1,11 @@
 const DropDownOptions = ({ title, options, selectedValue, handleSelected }) => {
   return (
-    <div className="flex items-center">
-      <span className="relative mr-2">{title}:</span>
+    <div className="field">
+      <span className="relative mr-2 field__label">{title}</span>
       <select
         name={"dropdown-" + title}
-        id=""
         value={selectedValue}
-        className="border-[1px] border-slate-400"
+        className="border-[1px] border-slate-400 field__input"
         onChange={(e) => handleSelected(e.target.value)}
       >
         {options.map((item, index) => {
@@ -17,7 +16,6 @@ const DropDownOptions = ({ title, options, selectedValue, handleSelected }) => {
           );
         })}
       </select>
-      {/* <button className="btn btn-slate">Add Property</button> */}
     </div>
   );
 };

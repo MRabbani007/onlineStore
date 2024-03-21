@@ -2,14 +2,16 @@ import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import CardImageReference from "./CardImageReference";
 import CardImageArray from "./CardImageArray";
-import CardAddArray from "./CardAddArray";
 import useProduct from "../../hooks/useProduct";
+import CardAddItem from "./CardAddItem";
+import { PRODUCT } from "../../data/actions";
+import CardEditItem from "./CardEditItem";
 
 const SectionImages = () => {
   const { product } = useProduct();
 
   // Control view of section
-  const [view, setView] = useState(true);
+  const [view, setView] = useState(false);
 
   return (
     <div>
@@ -22,8 +24,14 @@ const SectionImages = () => {
         )}
         Images
       </h2>
-      <div className={(view ? "flex flex-col" : "hidden") + " p-2"}>
+      <div className={(view ? "flex flex-col gap-2" : "hidden") + " p-2"}>
         <CardImageReference />
+        <CardEditItem
+          initialValue={product?.imagesURL}
+          type={PRODUCT.IMAGES_URL_EDIT}
+          title="Images URL"
+          showFormLabel={true}
+        />
         {Array.isArray(product?.images) &&
           Array.isArray(product?.imagesNames) &&
           product?.images.map((imageArray, index) => {
@@ -33,10 +41,17 @@ const SectionImages = () => {
                 imageArray={imageArray}
                 imageName={product?.imagesNames[index]}
                 arrayIndex={index}
+                imagesURL={product?.imagesURL || ""}
               />
             );
           })}
-        <CardAddArray />
+        {/* <CardAddArray /> */}
+        <CardAddItem
+          type={PRODUCT.ARRAY_ADD}
+          title="Add Image Array"
+          placeholder="Array Name"
+          showFormLabel={true}
+        />
       </div>
     </div>
   );

@@ -20,8 +20,6 @@ const OrdersPage = () => {
           return <CardOrders key={index} order={order} />;
         })
       )}
-      {/* <CardOrders />
-        <CardOrders /> */}
     </div>
   );
 };

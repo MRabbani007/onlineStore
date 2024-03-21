@@ -17,7 +17,7 @@ const SectionProductDetails = () => {
         )}
         Details
       </h2>
-      <div className={(view ? "block" : "hidden") + " p-2"}>
+      <div className={(view ? "flex flex-col gap-2 " : "hidden") + " p-2"}>
         <SectionAbout />
         <SectionDetails />
       </div>

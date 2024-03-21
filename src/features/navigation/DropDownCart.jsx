@@ -62,7 +62,7 @@ const DropDownCart = forwardRef(({ cartMenu }, ref) => {
             onClick={() => {
               handleClick(cartItem?.prodID || cartItem?.id);
             }}
-            className={`text-gray-700 w-[400px] flex justify-between px-4 py-2 text-sm cursor-pointer hover:bg-slate-300 ${
+            className={`text-gray-700 max-w-[300px] sm:max-w-[400px] w-fit flex justify-between px-4 py-2 text-sm cursor-pointer hover:bg-slate-300 ${
               index === cart.length - 1 ? "rounded-b-md" : ""
             }`}
           >
@@ -70,7 +70,11 @@ const DropDownCart = forwardRef(({ cartMenu }, ref) => {
               <>
                 <div className="w-[100px]">
                   <img
-                    src={IMAGE_URL + getValue(index, "image")}
+                    src={
+                      IMAGE_URL +
+                      (cartItem?.imagesURL || "") +
+                      getValue(index, "image")
+                    }
                     alt=""
                     className="min-w-[80px] max-h-[80px]"
                   />

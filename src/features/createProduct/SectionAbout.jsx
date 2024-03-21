@@ -1,7 +1,7 @@
 import useProduct from "../../hooks/useProduct";
 import { PRODUCT } from "../../data/actions";
-import CardAddAbout from "./CardAddAbout";
 import { FaTimes } from "react-icons/fa";
+import CardAddItem from "./CardAddItem";
 
 const SectionAbout = () => {
   const { product, dispatch } = useProduct();
@@ -11,7 +11,7 @@ const SectionAbout = () => {
   };
 
   return (
-    <div>
+    <div className="rounded-md border-2 p-2">
       {/* Product About */}
       <h2 className="flex items-center">About</h2>
       <ul className="">
@@ -28,7 +28,12 @@ const SectionAbout = () => {
             );
           })}
       </ul>
-      <CardAddAbout />
+      <CardAddItem
+        type={PRODUCT.ABOUT_ADD}
+        placeholder="Add About"
+        title="Add About"
+        showFormLabel={true}
+      />
     </div>
   );
 };
